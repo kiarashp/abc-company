@@ -6,11 +6,11 @@
 
 backend:
   name: github
-  repo: kiarashp/svelte-company
+  repo: kiarashp/abc-company
   branch: master
   # "Log in with GitHub" is handled by this site itself: src/routes/api/cms-auth.
   # It needs GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in the server's .env.
-  base_url: https://svelte-abc.kiapmd.dev
+  base_url: https://abc.kiapmd.dev
   auth_endpoint: api/cms-auth
   commit_messages:
     create: 'Content: add {{collection}} "{{slug}}"'
@@ -33,8 +33,8 @@ media_libraries:
           width: 1600
           height: 1600
 
-site_url: https://svelte-abc.kiapmd.dev
-display_url: https://svelte-abc.kiapmd.dev
+site_url: https://abc.kiapmd.dev
+display_url: https://abc.kiapmd.dev
 app_title: ABC Company editor
 
 collections:

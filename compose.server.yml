@@ -1,22 +1,27 @@
-# How the app runs on Kia's server (in /srv/svelte-abc). See the server project's docs/server.md.
-# The image "svelte-abc:live" is NOT built here: GitHub Actions builds it and copies it in (deploy/receive-image.sh).
-name: svelte-abc
+# How the app runs on Kia's server (in /srv/abc). See the server project's docs/server.md.
+# The image "abc:live" is NOT built here: GitHub Actions builds it and copies it in (deploy/receive-image.sh).
+name: abc
 
 services:
   app:
-    image: svelte-abc:live
+    image: abc:live
     pull_policy: never # never look for it online; it only exists on this server
     restart: unless-stopped # comes back by itself after a crash or a server restart
     env_file: .env # the secrets; this file exists only on the server (owner claude, 600)
     networks:
       web:
-        aliases: [svelte-abc] # Caddy reaches the app at svelte-abc:3000
+        aliases: [abc] # Caddy reaches the app at abc:3000
     # Hard limits, so a crash or a leak in this app can't starve the other sites on the server.
     mem_limit: 160m
+    memswap_limit: 160m # no swap (the slow memory on disk) either, so it can't slow the whole server
+    oom_score_adj: 500 # if the server ever runs out of memory, Linux stops this box first, not the databases
     cpus: 0.5
     pids_limit: 100
     read_only: true # the box can only write to /tmp
     tmpfs: [/tmp]
+    volumes:
+      # The day's email count (src/lib/server/mail.ts), so a restart can't reset the daily cap.
+      - email-count:/data
     security_opt: [no-new-privileges:true]
     cap_drop: [ALL]
     healthcheck:
@@ -27,6 +32,9 @@ services:
       start_period: 20s
       retries: 3
     # No "ports:" on purpose: Docker would open them to the internet past the firewall. Only Caddy is reachable.
+
+volumes:
+  email-count:
 
 networks:
   web:

@@ -1,4 +1,4 @@
-# Secrets (on the server, /srv/svelte-abc/.env). Never commit them.
+# Secrets (on the server, /srv/abc/.env). Never commit them.
 .env
 .env.*
 !.env.example

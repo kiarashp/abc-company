@@ -1,7 +1,10 @@
 // Email through Brevo (SMTP: the standard way programs hand email to a mail service).
 // The Brevo account is shared with Kia's other sites (300 a day for all together),
-// so this app sends at most EMAILS_PER_DAY (default 10) per day (UTC).
-// The count is kept in memory: it starts again at 0 if the app restarts. Fine for a demo site.
+// so this app sends at most EMAILS_PER_DAY (default 20) per day (UTC).
+// The count is saved in a small file (COUNT_FILE) on a Docker volume (a storage folder that
+// outlives the box), so a crash-and-restart loop cannot reset it and send more.
+// Without that folder (on a laptop) the count is kept in memory only.
+import { readFileSync, writeFileSync } from 'node:fs';
 import nodemailer from 'nodemailer';
 import {
 	SMTP_LOGIN,
@@ -12,17 +15,37 @@ import {
 	EMAILS_PER_DAY
 } from '$app/env/private';
 
+const COUNT_FILE = '/data/email-count.json';
+const today = () => new Date().toISOString().slice(0, 10);
+
 let day = '';
 let sentToday = 0;
+try {
+	const saved = JSON.parse(readFileSync(COUNT_FILE, 'utf8'));
+	if (typeof saved.day === 'string' && Number.isInteger(saved.sent)) {
+		day = saved.day;
+		sentToday = saved.sent;
+	}
+} catch {
+	// No file yet, or no /data folder: start at 0.
+}
+
+function save() {
+	try {
+		writeFileSync(COUNT_FILE, JSON.stringify({ day, sent: sentToday }));
+	} catch {
+		// No /data folder (on a laptop): memory only.
+	}
+}
 
 function reserve(): boolean {
-	const today = new Date().toISOString().slice(0, 10);
-	if (today !== day) {
-		day = today;
+	if (today() !== day) {
+		day = today();
 		sentToday = 0;
 	}
-	if (sentToday >= Number(EMAILS_PER_DAY || 10)) return false;
+	if (sentToday >= Number(EMAILS_PER_DAY || 20)) return false;
 	sentToday++;
+	save();
 	return true;
 }
 
@@ -54,13 +77,14 @@ export async function sendMail(mail: Mail): Promise<'sent' | 'capped' | 'off' | 
 			socketTimeout: 20_000
 		});
 		await transport.sendMail({
-			from: MAIL_FROM || 'ABC Company demo <svelte-abc@kiapmd.dev>',
+			from: MAIL_FROM || 'ABC Company demo <abc@kiapmd.dev>',
 			...mail
 		});
 		return 'sent';
 	} catch (e) {
 		// Give the slot back: nothing was sent.
 		sentToday--;
+		save();
 		console.error('Email failed:', e instanceof Error ? e.message : e);
 		return 'failed';
 	}

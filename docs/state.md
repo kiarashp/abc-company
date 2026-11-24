@@ -7,53 +7,44 @@ How the site runs and is edited: `docs/server.md`.
 
 A portfolio demo: website for a FICTIONAL consulting firm, "ABC Company". Kia's own work (built 2025).
 Kia (24 Nov 2026): "it will be a portfolio fake website" — rewrite anything that needs it.
-Live today (old version) on Vercel: https://svelte-abc.kiapmd.dev. Repo: github.com/kiarashp/svelte-company (public).
+New address: **https://abc.kiapmd.dev** (Kia chose it 24 Nov 2026). Old version still live on Vercel at
+https://svelte-abc.kiapmd.dev. Repo: github.com/kiarashp/abc-company (public; was svelte-company).
+Folder on Kia's PC: `D:\KIARASH\WORK\servers\kia-netherlands-vps\abc-company` (was `to-polish\svelte-company`).
 
 ## State (24 Nov 2026)
 
-All the new work is on branch **`cms-and-vps`**, on top of `master`. Pushed to GitHub 24 Nov 2026 (not merged).
-`master` = the old Sanity + Vercel version that is still live. Nothing on the server yet.
+All the new work is on branch **`cms-and-vps`**, pushed to GitHub, not merged. `master` = the old
+Sanity + Vercel version. Nothing on the server yet.
 
 Done and tested locally on the branch:
 1. CMS: Sanity removed. Every word and picture is a JSON file in `sveltekit-project/src/content/`,
-   edited with Sveltia CMS at `/admin` (saves to GitHub). "Log in with GitHub" is built into the site
-   (`src/routes/api/cms-auth/`). Case studies got readable addresses; old `/case-studies/1..6` redirect.
-2. Security: contact form escaped/checked, plain-text email via Brevo, spam trap, 5/hour per visitor,
-   10/day total. SvelteKit 3 / Vite 8, `pnpm audit` = 0 known problems.
-3. Speed/access: Lighthouse phone 94–98 speed, 100 accessibility/best practices/SEO on every page;
-   computer 100 in all four. Old version on the same test: phone speed 72–73, SEO 82, 3.2 MB home page.
-4. New page `/about-this-project` with those before/after numbers (written as Kia, "I built…").
-5. Content pass: clearly fictional (no real names, email info@kiapmd.dev (Kia's own), address "12 Example Street, London (demo address)", phone "000 0000 0000 (demo number)"
-   — Kia wants it obviously fake), demo note in footer and above the contact form.
-6. Server files ready, copied from Aura: `sveltekit-project/Dockerfile`, `compose.server.yml`,
-   `deploy-hook.sh`, `deploy/receive-image.sh`, `.github/workflows/deploy.yml`, `.env.example`.
-
-Checks at the last commit: `pnpm check`, `pnpm lint`, `pnpm build` all pass (in `sveltekit-project/`).
-
-## What Kia has judged / not yet
-
-- Approved: CMS switch, all 4 portfolio steps (polish, everything editable, Lighthouse, About page),
-  rewriting content as clearly fictional, keeping the name "ABC Company" (not discussed further).
-- NOT yet seen by Kia: the site itself in a browser, and the wording of `/about-this-project`
-  (it speaks as Kia; Kia should read it and change anything in `/admin`).
-
-"Shall I push the branch to GitHub now?" (asked at the end of the session, not answered: Kia wrapped up).
+   edited with Sveltia CMS at `/admin` (saves to GitHub). "Log in with GitHub" is built into the site.
+2. Security: contact form checked, plain-text email via Brevo, spam trap, 5/hour per visitor,
+   **20/day total, count saved on a volume** so a restart can't reset it. `pnpm audit` = 0 known problems.
+3. Speed/access: Lighthouse phone 94–98 speed, 100 for the rest; computer 100 in all four.
+4. `/about-this-project` page with before/after numbers (written as Kia; Kia has not read it yet).
+5. Content: clearly fictional. Get in touch shows info@kiapmd.dev (real, Kia reads it),
+   "000 0000 0000 (demo number)", "12 Example Street, London (demo address)" (Kia: fakes must look fake).
+6. Server files ready (`Dockerfile`, `compose.server.yml`, `deploy-hook.sh`, `deploy/receive-image.sh`,
+   `.github/workflows/deploy.yml`, `.env.example`), all named **abc** (folder `/srv/abc`, box `abc-app-1`,
+   Brevo key "abc", sender abc@kiapmd.dev). Box: hard limits, no swap, stopped first if memory runs out.
 
 ## Next (in order)
 
-1. (Done 24 Nov 2026) Pushed `cms-and-vps`.
-2. Server move, following `D:\KIARASH\WORK\servers\kia-netherlands-vps\_server\CLAUDE.md` and its
-   docs/server.md "Adding a non-WordPress app". Explain every server step to Kia first. Kia's hands needed:
-   - Brevo: SMTP key named "svelte-abc" (into `/srv/svelte-abc/.env`, never chat).
-   - GitHub OAuth App for the editor login (callback `https://svelte-abc.kiapmd.dev/api/cms-auth/callback`).
-   - Deploy key pair: private half = repo secret `DEPLOY_SSH_KEY`, public half = forced-command line in
-     `~claude/.ssh/authorized_keys` (auto mode blocks it: write a script, Kia runs it), plus `DEPLOY_KNOWN_HOSTS`.
-   - Server: clone to `/srv/svelte-abc` (public repo, https, branch master), `.env`, line in `repos.conf`,
-     Caddy block + the 7-day picture cache in `docs/server.md`; test on `svelte-abc.wp.kiapmd.dev` first.
-   - DNS at Porkbun: `svelte-abc` → 85.31.148.209 (today it points to Vercel). Then turn Vercel off.
-   - Merge `cms-and-vps` into `master` only when the server is ready (push to master = deploy).
-3. After going live: test the real email and the real GitHub login in `/admin`; re-run Lighthouse on
-   the live address; add the site to the table in the server project's docs/server.md.
+1. **Kia:** DNS at Porkbun: A record `abc` → 85.31.148.209. Brevo: new SMTP key "abc" (value goes into
+   `/srv/abc/.env` through a file, never the chat). GitHub OAuth App: homepage `https://abc.kiapmd.dev`,
+   callback `https://abc.kiapmd.dev/api/cms-auth/callback`.
+2. Server (follow the server's docs/server.md "Adding a non-WordPress app"; explain each step to Kia first):
+   clone to `/srv/abc` (public repo, https, branch master), `.env`, line in `repos.conf`, Caddy block +
+   7-day picture cache; deploy key pair (private = repo secret `DEPLOY_SSH_KEY`, public = forced-command line
+   in `~claude/.ssh/authorized_keys`: auto mode blocks it, Kia runs a script), `DEPLOY_KNOWN_HOSTS`.
+3. Merge `cms-and-vps` into `master` when the server is ready (push to master = build and deploy).
+4. Old address: Kia points `svelte-abc` at the server too, Caddy forwards it to abc.kiapmd.dev; then turn
+   the Vercel project off.
+5. After going live: test real email + GitHub login in `/admin`; re-run Lighthouse live; update the
+   server's docs/server.md table (row already added, "being set up").
+6. Leftover: `D:\KIARASH\WORK\to-polish\svelte-company` is a half-copied leftover of the move
+   (all of it is in the new folder and on GitHub). Kia deletes it (auto mode blocked Claude).
 
 ## Traps learned
 
@@ -66,3 +57,5 @@ Checks at the last commit: `pnpm check`, `pnpm lint`, `pnpm build` all pass (in 
 - Lighthouse: a failed run can leave the old report file; delete the report before each run.
 - Test: in `sveltekit-project/`, `pnpm build && PORT=4319 node build`, then open http://localhost:4319.
   `/admin` shows the editor login; real saving needs the GitHub login (after the move).
+- Moving a project folder with PowerShell's Move-Item: if Windows can't simply rename it, Move-Item copies and
+  deletes file by file and stops halfway (read-only git files). Use `git clone` into the new place instead.

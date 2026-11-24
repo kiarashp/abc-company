@@ -28,6 +28,8 @@ ENV NODE_ENV=production \
 COPY --from=build /app/build ./build
 COPY --from=build /app/node_modules ./node_modules
 COPY package.json ./
+# The folder for the day's email count; a Docker volume is mounted here and keeps this owner.
+RUN mkdir /data && chown node:node /data
 # Run as the plain "node" user, not root (if someone breaks in, they get less).
 USER node
 EXPOSE 3000

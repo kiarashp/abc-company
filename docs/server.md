@@ -7,7 +7,10 @@ Per-app notes. Whole-server facts (Caddy, auto-pull, Brevo, traps) are in the se
 
 A demo website for a made-up consulting firm ("ABC Company"), built with SvelteKit 3
 (a tool for making websites). The site's code is in `sveltekit-project/`.
-Address: https://svelte-abc.kiapmd.dev (was on Vercel until the move).
+Address: https://abc.kiapmd.dev. Until Nov 2026 it was on Vercel at svelte-abc.kiapmd.dev (that old address
+should forward to the new one; see the server's Caddyfile). Repo: github.com/kiarashp/abc-company (public;
+renamed from svelte-company on 24 Nov 2026, GitHub forwards the old name). On Kia's PC:
+`D:\KIARASH\WORK\servers\kia-netherlands-vps\abc-company` (moved from `to-polish\svelte-company`).
 
 ## Content editing (CMS = content editor)
 
@@ -27,10 +30,19 @@ Address: https://svelte-abc.kiapmd.dev (was on Vercel until the move).
   build-and-deploy (below), so the change is live in about 5 minutes.
 - "Log in with GitHub" is handled by this site itself (`src/routes/api/cms-auth/`). It needs a GitHub
   OAuth App (GitHub > Settings > Developer settings > OAuth Apps):
-  - Homepage URL: `https://svelte-abc.kiapmd.dev`
-  - Authorization callback URL: `https://svelte-abc.kiapmd.dev/api/cms-auth/callback`
+  - Homepage URL: `https://abc.kiapmd.dev`
+  - Authorization callback URL: `https://abc.kiapmd.dev/api/cms-auth/callback`
   - Its client ID and secret go in the server's `.env` (GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET).
-- Only GitHub users who can push to `kiarashp/svelte-company` can save. GitHub checks that.
+- Only GitHub users who can push to `kiarashp/abc-company` can save. GitHub checks that.
+
+## If it breaks, only it goes down
+
+- Its own box with hard limits (memory, CPU, processes), so a leak or a loop can't starve the other sites.
+- No database and no shared files: it uses nothing the other sites use, except Caddy (the front door) and Brevo.
+- If the box is down, Caddy shows an error for abc.kiapmd.dev only; every other address keeps working.
+- A broken build never arrives: GitHub tests the image first, and the server only switches to a new image
+  when it says "healthy" (otherwise the log says NOT HEALTHY and `receive-image.sh back <commit>` goes back).
+- Email: its own Brevo key (switch it off alone) and its own 20-a-day cap, saved across restarts.
 
 ## On the server
 
@@ -38,17 +50,18 @@ Same pattern as Aura (see the server notes, "Adding a non-WordPress app"):
 
 | | |
 |---|---|
-| Server folder | `/srv/svelte-abc` (git copy of this repo, branch `master`, public repo so no deploy key needed) |
-| Box | `svelte-abc-app-1`, image `svelte-abc:live`, limit 160 MB, 0.5 CPU, read-only, healthcheck `/healthz` |
-| Caddy | `svelte-abc.kiapmd.dev { import common; reverse_proxy svelte-abc:3000 }` plus a 7-day browser cache for pictures (see below) |
-| Secrets | `/srv/svelte-abc/.env` (owner claude, 600); names in `.env.example` |
-| Email | Brevo, SMTP key "svelte-abc", max 10 contact emails a day (EMAILS_PER_DAY) |
+| Server folder | `/srv/abc` (git copy of this repo, branch `master`, public repo so no deploy key needed) |
+| Box | `abc-app-1`, image `abc:live`, limit 160 MB (no swap), 0.5 CPU, 100 processes, read-only, no extra rights, first to be stopped if the server runs out of memory, healthcheck `/healthz` |
+| Volume | `abc_email-count` at `/data`: only the day's email count (not worth backing up) |
+| Caddy | `abc.kiapmd.dev { import common; reverse_proxy abc:3000 }` plus a 7-day browser cache for pictures (see below) |
+| Secrets | `/srv/abc/.env` (owner claude, 600); names in `.env.example` |
+| Email | Brevo, SMTP key "abc", max 20 contact emails a day (EMAILS_PER_DAY, default 20; Kia, 24 Nov 2026), from abc@kiapmd.dev |
 | Database | none |
 
 - Build: GitHub Actions (`.github/workflows/deploy.yml`) checks the code, builds the image, starts it once to
   test it, then sends it over SSH to `deploy/receive-image.sh` on the server. Never built on the server.
 - Auto-pull brings only settings files; `deploy-hook.sh` restarts the box when `compose.server.yml` changes.
-- Going back: on the server, `/srv/svelte-abc/deploy/receive-image.sh back <commit>`.
+- Going back: on the server, `/srv/abc/deploy/receive-image.sh back <commit>`.
 
 ## Speed (Lighthouse, Nov 2026, before the move)
 
@@ -68,8 +81,8 @@ Files under `/_app/immutable/` already get "keep forever" from the app (their na
 
 `/api/send-mail`. Plain-text email to info@kiapmd.dev with reply-to set to the visitor.
 Protections: every field checked, hidden spam-trap field, 5 messages per hour per visitor
-(by the X-Forwarded-For address that Caddy sets), 10 a day in total. Both counts are kept in memory and reset
-when the box restarts.
+(by the X-Forwarded-For address that Caddy sets; kept in memory), 20 a day in total. The daily count is saved
+in `/data/email-count.json` on a volume, so a crash-and-restart loop cannot reset it.
 
 ## Pages
 

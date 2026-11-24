@@ -8,4 +8,5 @@ Read `docs/state.md` first (where we are, what is next). How it runs and how edi
   `sveltekit-project/src/content/`, edited at `/admin` (Sveltia CMS; forms in `static/admin/config.yml`).
 - Checks, in `sveltekit-project/`: `pnpm check`, `pnpm lint`, `pnpm build`.
 - Push to `master` = build and deploy (once the server move is done). Work on a branch; ask before pushing.
+- Folder: `D:\KIARASH\WORK\servers\kia-netherlands-vps\abc-company` (with the other apps on the Netherlands server).
 - Server work: read `D:\KIARASH\WORK\servers\kia-netherlands-vps\_server\CLAUDE.md` first.
