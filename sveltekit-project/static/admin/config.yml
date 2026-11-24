@@ -6,9 +6,10 @@ backend:
   name: github
   repo: kiarashp/svelte-company
   branch: master
-  # The small login helper that lets the editor "log in with GitHub".
-  # It runs on the server (see the server notes); without it, only local editing works.
-  base_url: https://cms-auth.kiapmd.dev
+  # "Log in with GitHub" is handled by this site itself: src/routes/api/cms-auth.
+  # It needs GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in the server's .env.
+  base_url: https://svelte-abc.kiapmd.dev
+  auth_endpoint: api/cms-auth
 
 # Pictures are not used by the stories yet; this is where they would go.
 media_folder: sveltekit-project/static/uploads

@@ -1,17 +1,21 @@
-// Receives the "Contact Us" form and emails it to us through SendGrid (an email-sending service).
+// Receives the "Contact Us" form and emails it to us through Brevo (see #lib/server/mail.ts).
 //
 // Safety rules here, because anyone on the internet can call this address:
 // - Every field is checked (required, max length, email shape, known service).
-// - Everything the visitor typed is "escaped" before it goes into the email,
-//   so they can't slip their own HTML (web page code, e.g. fake links) into it.
+// - The email is plain text only, so nothing a visitor types can turn into
+//   web page code (like fake links) inside it.
 // - A hidden "website" field catches simple spam bots (people never see or fill it).
-// - Each visitor (by IP address) can send only a few messages per hour.
+// - Each visitor (by IP address) can send only a few messages per hour,
+//   and the whole site only EMAILS_PER_DAY a day.
 // - Errors are logged on the server, never sent back to the visitor.
 
-import { SENDGRID_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } from '$app/env/private';
-import sgmail from '@sendgrid/mail';
+import { CONTACT_TO_EMAIL } from '$app/env/private';
 import { json } from '@sveltejs/kit';
+import { sendMail } from '#lib/server/mail.ts';
 import type { RequestHandler } from './$types';
+
+// This address must run live on the server, never be built ahead of time.
+export const prerender = false;
 
 const SERVICES = new Set([
 	'product-consulting',
@@ -45,21 +49,15 @@ function tooMany(ip: string): boolean {
 	return false;
 }
 
-function escapeHtml(text: string): string {
-	return text
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#39;');
-}
-
 function text(value: unknown, max: number): string | null {
 	if (typeof value !== 'string') return null;
 	const trimmed = value.trim();
 	if (trimmed.length === 0 || trimmed.length > max) return null;
 	return trimmed;
 }
+
+// One line only: stops a visitor from adding extra lines to the email's subject.
+const oneLine = (s: string) => s.replace(/[\r\n]+/g, ' ');
 
 export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	let body: Record<string, unknown>;
@@ -99,44 +97,20 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 		return json({ error: 'Too many messages. Please try again later.' }, { status: 429 });
 	}
 
-	const apiKey = SENDGRID_API_KEY;
-	if (!apiKey) {
-		console.error('send-mail: SENDGRID_API_KEY is not set');
-		return json({ error: 'Email is not available right now.' }, { status: 500 });
-	}
-	sgmail.setApiKey(apiKey);
+	const result = await sendMail({
+		to: CONTACT_TO_EMAIL || 'info@kiapmd.dev',
+		// Pressing "reply" in the inbox answers the visitor directly.
+		replyTo: email,
+		subject: `ABC Company demo contact form: ${oneLine(subject).slice(0, 120)}`,
+		text:
+			`Somebody used the contact form on the ABC Company demo site.\n\n` +
+			`Name: ${oneLine(name)}\nEmail: ${email}\nSubject: ${oneLine(subject)}\n` +
+			`Budget: ${budget}\nService: ${service}\n\nMessage:\n${message}\n`
+	});
 
-	const safe = {
-		name: escapeHtml(name),
-		email: escapeHtml(email),
-		service: escapeHtml(service),
-		budget: escapeHtml(budget),
-		subject: escapeHtml(subject),
-		message: escapeHtml(message).replace(/\n/g, '<br>')
-	};
-
-	try {
-		await sgmail.send({
-			to: CONTACT_TO_EMAIL || 'info@kiapmd.dev',
-			from: CONTACT_FROM_EMAIL || 'form@kiapmd.dev',
-			// Pressing "reply" in the inbox answers the visitor directly.
-			replyTo: email,
-			subject: 'New Contact Us Form Submission from ABC Company',
-			text:
-				`Somebody used the contact form on the ABC Company website.\n\n` +
-				`Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nBudget: ${budget}\n` +
-				`Service: ${service}\n\nMessage:\n${message}\n`,
-			html: `<p>Somebody used the contact form on the ABC Company website. Here are the details:</p>
-				<p><strong>Name:</strong> ${safe.name}</p>
-				<p><strong>Email:</strong> ${safe.email}</p>
-				<p><strong>Subject:</strong> ${safe.subject}</p>
-				<p><strong>Budget:</strong> ${safe.budget}</p>
-				<p><strong>Service:</strong> ${safe.service}</p>
-				<p><strong>Message:</strong><br>${safe.message}</p>`
-		});
-		return json({ emailSentSuccessfully: true });
-	} catch (error) {
-		console.error('send-mail: SendGrid failed', error);
-		return json({ error: 'The message could not be sent.' }, { status: 502 });
+	if (result === 'sent') return json({ emailSentSuccessfully: true });
+	if (result === 'capped') {
+		return json({ error: 'Too many messages today. Please try again tomorrow.' }, { status: 429 });
 	}
+	return json({ error: 'The message could not be sent.' }, { status: 502 });
 };

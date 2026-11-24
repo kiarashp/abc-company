@@ -1,0 +1,89 @@
+# Check the app, build it on GitHub and put it on Kia's server. See the server project's docs/server.md.
+# GitHub Actions = GitHub's build robots (free for public repos).
+# The image goes straight to the server over SSH, NOT through GitHub's image storage (ghcr).
+# The website itself lives in the folder "sveltekit-project".
+name: Test and deploy
+
+on:
+  push:
+    branches: [master]
+    # Notes do not change the app: no build for them.
+    # A story saved in the editor (/admin) changes sveltekit-project/src/content, so it DOES rebuild.
+    paths-ignore: ['docs/**', '**/*.md', '.claude/**']
+  pull_request:
+  workflow_dispatch: # a "Run workflow" button on GitHub, to deploy by hand
+
+# Two pushes close together: the older run is stopped, only the newest gets deployed.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: sveltekit-project
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: sveltekit-project/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: sveltekit-project/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm exec eslint .
+      - run: pnpm build
+
+  deploy:
+    # Only after the checks pass, and only for pushes to master (not for pull requests).
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      # Build the image. The cache (kept on GitHub) skips the slow installs when only code changed.
+      - uses: docker/build-push-action@v6
+        with:
+          context: sveltekit-project
+          load: true
+          tags: svelte-abc:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Start the finished image the way the server runs it, and check that it shows pages.
+      # A broken image never reaches the server.
+      - name: Try the image
+        run: |
+          docker run -d --name app -p 3000:3000 --read-only --tmpfs /tmp svelte-abc:${{ github.sha }}
+          ok=""
+          for i in $(seq 30); do curl -sf http://localhost:3000/healthz && ok=1 && break; sleep 1; done
+          [ -n "$ok" ] || { docker logs app; exit 1; }
+          curl -sf http://localhost:3000/ | grep -q 'Success Stories' || { docker logs app; exit 1; }
+          curl -sf http://localhost:3000/case-studies/1 -o /dev/null
+          curl -sf http://localhost:3000/admin/ | grep -q 'sveltia' || { docker logs app; exit 1; }
+          echo "Image works."
+
+      # Send it to the server. The key in DEPLOY_SSH_KEY can only run deploy/receive-image.sh there.
+      # DEPLOY_KNOWN_HOSTS = the server's own ID, so we never send to an impostor.
+      - name: Copy the image to the server and start it
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          if [ -z "$SSH_KEY" ]; then echo "No DEPLOY_SSH_KEY secret yet: skipping the deploy."; exit 0; fi
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          docker save "svelte-abc:${{ github.sha }}" | gzip \
+            | ssh -i ~/.ssh/deploy -o IdentitiesOnly=yes claude@85.31.148.209 "${{ github.sha }}"
