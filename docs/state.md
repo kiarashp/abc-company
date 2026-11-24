@@ -13,8 +13,8 @@ Folder on Kia's PC: `D:\KIARASH\WORK\servers\kia-netherlands-vps\abc-company` (w
 
 ## State (24 Nov 2026)
 
-All the new work is on branch **`cms-and-vps`**, pushed to GitHub, not merged. `master` = the old
-Sanity + Vercel version. Nothing on the server yet.
+**LIVE on https://abc.kiapmd.dev since 24 Nov 2026** (Kia's Netherlands server, box `abc-app-1`, healthy, ~20 MB).
+`master` = the new version (push = test, build, deliver, ~3 min). Old version frozen on Vercel at svelte-abc.kiapmd.dev.
 
 Done and tested locally on the branch:
 1. CMS: Sanity removed. Every word and picture is a JSON file in `sveltekit-project/src/content/`,
@@ -36,7 +36,7 @@ abc-company; replaced an OAuth App, see docs/server.md) in `/srv/abc/.env`; `/sr
 and auto-pull line pushed in the server repo; delivery key on the server + repo secrets; `cms-and-vps` merged
 into `master` (= first real deploy).
 
-1. Check the first deploy: GitHub Actions run, `abc-app-1` healthy, pages load on https://abc.kiapmd.dev.
+1. (Done 24 Nov) First deploy: tests + delivery passed, box healthy, pages 200, /data writable, login goes to GitHub.
 2. Kia: log in at /admin, save a small change; send a test message with the contact form.
 3. Old address: Kia points Porkbun `svelte-abc` at 85.31.148.209, then add a Caddy block forwarding
    svelte-abc.kiapmd.dev to abc.kiapmd.dev; then turn the Vercel project off (it fails to build the new code
@@ -56,5 +56,7 @@ into `master` (= first real deploy).
 - Lighthouse: a failed run can leave the old report file; delete the report before each run.
 - Test: in `sveltekit-project/`, `pnpm build && PORT=4319 node build`, then open http://localhost:4319.
   `/admin` shows the editor login; real saving needs the GitHub login (after the move).
+- Scripts committed from Windows lose their "runnable" mark: `git update-index --chmod=+x <file>` (the first
+  deploy failed with "receive-image.sh: Permission denied").
 - Moving a project folder with PowerShell's Move-Item: if Windows can't simply rename it, Move-Item copies and
   deletes file by file and stops halfway (read-only git files). Use `git clone` into the new place instead.
