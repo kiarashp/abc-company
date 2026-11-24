@@ -7,3 +7,7 @@ bun.lockb
 
 # Miscellaneous
 /static/
+
+# Content: written by the editor at /admin (Sveltia saves JSON with spaces). Not code, so no style check;
+# pnpm check still checks every field and type (src/lib/content/index.ts).
+/src/content/
