@@ -37,7 +37,8 @@ and auto-pull line pushed in the server repo; delivery key on the server + repo 
 into `master` (= first real deploy).
 
 1. (Done 24 Nov) First deploy: tests + delivery passed, box healthy, pages 200, /data writable, login goes to GitHub.
-2. (Done 24 Nov) /admin login + save works end to end. Still to test: a contact form message (Kia).
+2. (Done 24 Nov) /admin login + save works end to end. Contact form tested 24 Nov: sent via Brevo, arrived in
+   SPAM at info@kiapmd.dev (new sender abc@kiapmd.dev); Kia marks "Not spam" / adds a filter.
    Kia's test edit "From !! startups" in the home subtitle is live: undo it in /admin.
 3. Old address: Kia points Porkbun `svelte-abc` at 85.31.148.209, then add a Caddy block forwarding
    svelte-abc.kiapmd.dev to abc.kiapmd.dev; then turn the Vercel project off (it fails to build the new code
