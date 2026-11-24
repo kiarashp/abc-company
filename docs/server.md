@@ -93,3 +93,19 @@ in `/data/email-count.json` on a volume, so a crash-and-restart loop cannot rese
 ## Pages
 
 All pages are prerendered (built into ready HTML at build time). Only `/api/*` and `/healthz` run live.
+
+## Security check (24 Nov 2026, on the live site)
+
+Tested from the server with harmless fake attacks; all blocked:
+- Form posted from another website (text/plain or form data): 403 (SvelteKit's origin check).
+- Oversized or broken form data: 400. Spam-trap field filled: answers "sent", sends nothing, count unchanged.
+- Extra email headers via line breaks: refused (fields checked, subject made one line, email is plain text,
+  and it only ever goes to info@kiapmd.dev, so the form can't be used to spam others).
+- Fake host header on the login link: GitHub return address stays abc.kiapmd.dev (Caddy overwrites it).
+- Login return with a made-up code: "Login failed" (the one-time `state` cookie must match).
+- `/.env`, `/.git/config`, `../` tricks: 404. Secrets are only in the box's environment, never in files it serves.
+- Box: runs as user `node`, can't write its own files, no Docker access, hard limits.
+- No raw HTML output anywhere in the site code (`{@html}`), `pnpm audit`: no known problems.
+Added then: Caddy headers for abc.kiapmd.dev (no framing by other sites, HSTS), and a fingerprint (SRI) on
+the editor script in `static/admin/index.html`. **Updating Sveltia = update the version AND the fingerprint**
+(command in that file), or /admin stays blank.
