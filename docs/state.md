@@ -23,8 +23,8 @@ Done and tested locally on the branch:
 3. Speed/access: Lighthouse phone 94–98 speed, 100 accessibility/best practices/SEO on every page;
    computer 100 in all four. Old version on the same test: phone speed 72–73, SEO 82, 3.2 MB home page.
 4. New page `/about-this-project` with those before/after numbers (written as Kia, "I built…").
-5. Content pass: clearly fictional (no real names, email info@kiapmd.dev (Kia's own), dummy address, phone from the
-   fiction-only 020 7946 0xxx range), demo note in footer and above the contact form.
+5. Content pass: clearly fictional (no real names, email info@kiapmd.dev (Kia's own), dummy address, phone "000 0000 0000 (demo number)"
+   — Kia wants it obviously fake), demo note in footer and above the contact form.
 6. Server files ready, copied from Aura: `sveltekit-project/Dockerfile`, `compose.server.yml`,
    `deploy-hook.sh`, `deploy/receive-image.sh`, `.github/workflows/deploy.yml`, `.env.example`.
 
