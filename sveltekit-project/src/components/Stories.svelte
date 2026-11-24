@@ -16,9 +16,9 @@
 				use:reveal={(i % 3) * 110}
 				class="text-primary col-span-12 flex flex-col items-start justify-start gap-[14px] md:col-span-4"
 			>
-				<p class=" text-secondary heading-md">{story.title}</p>
+				<p class=" text-secondary-ink heading-md">{story.title}</p>
 				<p class="body-lg text-accent">{story.desc}</p>
-				<p class="text-secondary body-lg">{story.writer}</p>
+				<p class="text-secondary-ink body-lg">{story.writer}</p>
 			</div>
 		{/each}
 		<div class="col-span-12 mt-8 flex items-center justify-center">

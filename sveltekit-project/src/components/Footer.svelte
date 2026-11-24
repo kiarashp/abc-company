@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
 	import GetInTouch from './GetInTouch.svelte';
 </script>
 
-<GetInTouch />
+<footer>
+	<GetInTouch />
+</footer>

@@ -23,6 +23,7 @@
 					class="h-full w-full object-cover"
 					src={data.SingleCase.image}
 					alt={data.SingleCase.title}
+					fetchpriority="high"
 					width="1024"
 					height="1024"
 				/>
@@ -55,13 +56,13 @@
 						<img
 							class="h-[150px] w-full rounded-lg object-cover transition-transform duration-[2s] ease-in-out group-hover/eachPost:scale-130 md:h-full md:object-contain"
 							src={caseStudy.image}
-							alt={caseStudy.title}
+							alt=""
 							loading="lazy"
 							width="1024"
 							height="1024"
 						/>
 					</div>
-					<p class="body-lg text-secondary px-2 md:mt-[24px]">{caseStudy.title}</p>
+					<p class="body-lg text-secondary-ink px-2 md:mt-[24px]">{caseStudy.title}</p>
 				</a>
 			{/each}
 		</div>

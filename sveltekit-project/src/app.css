@@ -6,6 +6,9 @@
 @theme {
 	--color-primary: rgba(21, 29, 38, 1);
 	--color-secondary: rgba(51, 152, 219, 1);
+	/* The same blue, a little deeper, for TEXT: easier to read on light backgrounds
+	   (passes the 4.5:1 contrast rule for readable text). */
+	--color-secondary-ink: #1c74af;
 	--color-accent: rgba(81, 113, 147, 1);
 	--color-mist: rgba(251, 253, 254, 1);
 

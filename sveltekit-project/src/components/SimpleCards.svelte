@@ -26,11 +26,13 @@
 					<img
 						class=" h-full max-w-full object-contain"
 						src={content.image}
-						alt={content.title}
+						alt=""
 						loading="lazy"
+						width="600"
+						height="600"
 					/>
 				</div>
-				<p class="heading-md text-secondary mt-[24px] self-start">{content.title}</p>
+				<p class="heading-md text-secondary-ink mt-[24px] self-start">{content.title}</p>
 				<p class="body-lg text-accent mt-[11px] self-start">{content.text}</p>
 			</div>
 		{/each}

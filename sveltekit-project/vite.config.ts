@@ -11,7 +11,10 @@ export default defineConfig({
 			preprocess: vitePreprocess(),
 			// adapter-node: builds the site as a small Node.js server
 			// (Node.js runs JavaScript outside the browser), so it can run on our own VPS.
-			adapter: adapter()
+			adapter: adapter(),
+			// Put the (small) stylesheet straight into each page, so the browser can draw the page
+			// without waiting for a separate CSS file. Value in bytes.
+			inlineStyleThreshold: 60_000
 		})
 	]
 	// Short folder names like "#lib/..." and "#components/..." are set in package.json under "imports".

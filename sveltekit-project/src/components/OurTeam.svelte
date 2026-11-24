@@ -22,7 +22,7 @@
 						height="1024"
 					/>
 				</div>
-				<p class="heading-md text-secondary mt-[24px]">{person.name}</p>
+				<p class="heading-md text-secondary-ink mt-[24px]">{person.name}</p>
 				<p class="body-lg text-accent mt-[11px]">{person.role}</p>
 			</div>
 		{/each}

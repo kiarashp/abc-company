@@ -16,6 +16,8 @@
 <svelte:head>
 	<title>{page.seoTitle}</title>
 	<meta name="description" content={page.seoDescription} />
+	<!-- The soft circle behind this top part is the first big thing on screen: fetch it first. -->
+	<link rel="preload" as="image" href="/decorative/shady-circle.webp" fetchpriority="high" />
 </svelte:head>
 
 <div

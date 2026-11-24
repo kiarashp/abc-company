@@ -94,16 +94,16 @@
 			<div class="col-span-6 xl:col-span-3">
 				<p class="heading-md">Navigation</p>
 				<div class="body-lg text-accent mt-[24px] flex flex-col gap-[4px] [&>a]:py-1">
-					<a class="hover:text-secondary active:text-primary duration-300" href="/about-us"
+					<a class="hover:text-secondary-ink active:text-primary duration-300" href="/about-us"
 						>About Us</a
 					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/case-studies"
+					<a class="hover:text-secondary-ink active:text-primary duration-300" href="/case-studies"
 						>Case Studies</a
 					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
+					<a class="hover:text-secondary-ink active:text-primary duration-300" href="/services"
 						>Services</a
 					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/contact-us"
+					<a class="hover:text-secondary-ink active:text-primary duration-300" href="/contact-us"
 						>Contact Us</a
 					>
 				</div>
@@ -112,7 +112,7 @@
 				<p class="heading-md">Services</p>
 				<div class="body-lg text-accent mt-[24px] flex flex-col gap-[4px] [&>a]:py-1">
 					{#each services as service (service.title)}
-						<a class="hover:text-secondary active:text-primary duration-300" href="/services"
+						<a class="hover:text-secondary-ink active:text-primary duration-300" href="/services"
 							>{service.title}</a
 						>
 					{/each}

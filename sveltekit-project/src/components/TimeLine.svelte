@@ -30,7 +30,7 @@
 						class="bg-secondary h-[5px] w-[20px] xl:block
 						{index % 2 === 0 ? 'block' : 'hidden '}"
 					></span>
-					<p class="text-secondary heading-md px-[12px] py-[6px]">{item.year}</p>
+					<p class="text-secondary-ink heading-md px-[12px] py-[6px]">{item.year}</p>
 					<span
 						class="bg-secondary h-[5px] w-[20px] xl:block
 						{index % 2 === 0 ? 'hidden' : 'block '}"
@@ -42,7 +42,7 @@
 				{index % 2 === 0 ? 'ps-[12px]' : 'pe-[12px] text-right'}
 				"
 				>
-					<p class="heading-md text-secondary">{item.title}</p>
+					<p class="heading-md text-secondary-ink">{item.title}</p>
 					<p class="heading-sm text-accent">
 						{item.text}
 					</p>

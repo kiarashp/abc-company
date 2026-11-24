@@ -55,27 +55,27 @@
 	<!-- menu -->
 	<nav class="hidden items-center gap-[1.5rem] font-medium xl:flex">
 		<a
-			class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+			class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 			href="/">Home</a
 		>
 		<div class="bg-primary h-[10px] w-[10px] rounded-full"></div>
 		<a
-			class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+			class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 			href="/about-us">About Us</a
 		>
 		<div class="bg-primary h-[10px] w-[10px] rounded-full"></div>
 		<a
-			class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+			class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 			href="/case-studies">Case Studies</a
 		>
 		<div class="bg-primary h-[10px] w-[10px] rounded-full"></div>
 		<a
-			class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+			class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 			href="/services">Services</a
 		>
 		<div class="bg-primary h-[10px] w-[10px] rounded-full"></div>
 		<a
-			class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+			class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 			href="/contact-us">Contact Us</a
 		>
 		<div class="bg-primary h-[10px] w-[10px] rounded-full"></div>
@@ -94,27 +94,27 @@
 				}}
 			>
 				<a
-					class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+					class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 					href="/">Home</a
 				>
 				<div class="bg-secondary h-[2px] w-[98%] rounded-full"></div>
 				<a
-					class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+					class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 					href="/about-us">About Us</a
 				>
 				<div class="bg-secondary h-[2px] w-[98%] rounded-full"></div>
 				<a
-					class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+					class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 					href="/case-studies">Case Studies</a
 				>
 				<div class="bg-secondary h-[2px] w-[98%] rounded-full"></div>
 				<a
-					class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+					class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 					href="/services">Services</a
 				>
 				<div class="bg-secondary h-[2px] w-[98%] rounded-full"></div>
 				<a
-					class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
+					class="active:text-secondary-ink cursor-pointer transition duration-300 hover:text-gray-500"
 					href="/contact-us">Contact Us</a
 				>
 				<div class="bg-secondary h-[2px] w-[98%] rounded-full"></div>

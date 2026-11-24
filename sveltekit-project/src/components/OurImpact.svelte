@@ -19,6 +19,8 @@
 		{/each}
 	</div>
 
-	<p class="heading-xxl text-secondary mt-[45px] self-center font-bold">{impact.highlight.value}</p>
-	<p class="text-secondary mt-[10px] self-center">{impact.highlight.label}</p>
+	<p class="heading-xxl text-secondary-ink mt-[45px] self-center font-bold">
+		{impact.highlight.value}
+	</p>
+	<p class="text-secondary-ink mt-[10px] self-center">{impact.highlight.label}</p>
 </div>

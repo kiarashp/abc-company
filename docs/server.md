@@ -40,7 +40,7 @@ Same pattern as Aura (see the server notes, "Adding a non-WordPress app"):
 |---|---|
 | Server folder | `/srv/svelte-abc` (git copy of this repo, branch `master`, public repo so no deploy key needed) |
 | Box | `svelte-abc-app-1`, image `svelte-abc:live`, limit 160 MB, 0.5 CPU, read-only, healthcheck `/healthz` |
-| Caddy | `svelte-abc.kiapmd.dev { import common; reverse_proxy svelte-abc:3000 }` |
+| Caddy | `svelte-abc.kiapmd.dev { import common; reverse_proxy svelte-abc:3000 }` plus a 7-day browser cache for pictures (see below) |
 | Secrets | `/srv/svelte-abc/.env` (owner claude, 600); names in `.env.example` |
 | Email | Brevo, SMTP key "svelte-abc", max 10 contact emails a day (EMAILS_PER_DAY) |
 | Database | none |
@@ -49,6 +49,18 @@ Same pattern as Aura (see the server notes, "Adding a non-WordPress app"):
   test it, then sends it over SSH to `deploy/receive-image.sh` on the server. Never built on the server.
 - Auto-pull brings only settings files; `deploy-hook.sh` restarts the box when `compose.server.yml` changes.
 - Going back: on the server, `/srv/svelte-abc/deploy/receive-image.sh back <commit>`.
+
+## Speed (Lighthouse, Nov 2026, before the move)
+
+Phone: speed 94–97, accessibility / best practices / SEO 100 on every page. Computer: 100 in all four.
+The one tip left is for Caddy: let browsers keep pictures (they have no version in their name, so 7 days, not forever):
+
+```
+@pictures path *.webp *.svg *.png *.jpg *.ico
+header @pictures Cache-Control "public, max-age=604800"
+```
+
+Files under `/_app/immutable/` already get "keep forever" from the app (their names change when they change).
 
 ## Contact form
 

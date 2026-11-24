@@ -38,14 +38,14 @@
 					<img
 						class="h-[300px] w-full rounded-lg object-cover transition-transform duration-[2s] ease-in-out group-hover/eachPost:scale-130 md:h-full md:object-contain"
 						src={caseStudy.image}
-						alt={caseStudy.title}
+						alt=""
 						loading="lazy"
 						width="1024"
 						height="1024"
 					/>
 				</div>
 
-				<p class="heading-md text-secondary mt-[24px] px-2">{caseStudy.title}</p>
+				<p class="heading-md text-secondary-ink mt-[24px] px-2">{caseStudy.title}</p>
 				<p class="text-accent body-lg px-2">Challenge</p>
 				<p class="text-accent body-sm px-2">{caseStudy.shortChallenge}</p>
 				<p class="text-accent body-lg px-2">Solution</p>

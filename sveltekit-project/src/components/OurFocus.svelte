@@ -9,7 +9,7 @@
 	class="paddingContainer mt-[60px] flex w-full flex-col items-center gap-[45px] xl:mt-[96px]"
 >
 	<blockquote class="heading-xl text-center text-pretty">“{quote.text}”</blockquote>
-	<figcaption class="text-secondary body-lg text-center">
+	<figcaption class="text-secondary-ink body-lg text-center">
 		{quote.name}
 		<br />
 		{quote.role}
