@@ -44,7 +44,9 @@ into `master` (= first real deploy).
    exists (no forwarding). Left: Kia revokes the old SendGrid key in SendGrid (it was only ever in Vercel).
 4. Kia: delete the old OAuth App "ABC Company editor" if not done (GitHub > Developer settings > OAuth Apps).
 5. Re-run Lighthouse on the live address; update the server's docs/server.md row (now "being set up");
-   Portfolio card in kiapmd-dev: IN PROGRESS on its branch `abc-rewrite` (see that project's STATE.md).
+   Portfolio card in kiapmd-dev: rewritten in 5 languages and LIVE 24 Nov, now on the /projects stage.
+6. Idea Kia liked (not started): a blog the owner writes at /admin (a Sveltia "Blog posts" collection,
+   /blog list, a page per post, menu link, 2-3 fictional posts). About 1-2 hours. Ask before starting.
 
 ## Traps learned
 
