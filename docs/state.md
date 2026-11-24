@@ -34,7 +34,7 @@ Done and tested locally on the branch:
 Done 24 Nov 2026: DNS A record `abc` (Porkbun); Brevo key "abc" + GitHub App "ABC Company editor" (only on
 abc-company; replaced an OAuth App, see docs/server.md) in `/srv/abc/.env`; `/srv/abc` cloned; Caddy block
 and auto-pull line pushed in the server repo; delivery key on the server + repo secrets; `cms-and-vps` merged
-into `master` (= first real deploy).
+into `master` (= first real deploy), then deleted (local + GitHub); `master` is the only branch.
 
 1. (Done 24 Nov) First deploy: tests + delivery passed, box healthy, pages 200, /data writable, login goes to GitHub.
 2. (Done 24 Nov) /admin login + save works end to end. Contact form tested 24 Nov: sent via Brevo, arrived in
