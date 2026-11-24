@@ -7,6 +7,7 @@
 
 	// The service list follows "Our Expertise" in the editor.
 	const services = section('expertise').items;
+	const formText = section('contact-form');
 
 	let formEle: HTMLFormElement | undefined = $state();
 	$effect(() => {
@@ -123,11 +124,9 @@
 <Hero page={pageContent('contact-us')} />
 
 <div class="paddingContainer mt-[96px] flex flex-col">
-	<p class="heading-xl">Let's Talk Business</p>
-	<p class="body-lg w-9/12">
-		Your vision, our expertise. Discover how we can help you achieve sustainable growth and
-		impactful solutions.
-	</p>
+	<p class="heading-xl">{formText.title}</p>
+	<p class="body-lg w-9/12">{formText.subtitle}</p>
+	<p class="body-md text-accent mt-3 w-12/12 xl:w-9/12">{formText.note}</p>
 
 	<form
 		bind:this={formEle}
@@ -146,15 +145,13 @@
 		{/if}
 
 		{#if doesEmailSent}
-			<div class="text-success body-lg col-span-12 w-full font-bold">
-				Thanks for reaching out to ABC Company! Your message has been successfully sent. We'll get
-				back to you within 1-2 business days.
+			<div role="status" class="text-success body-lg col-span-12 w-full font-bold">
+				{formText.success}
 			</div>
 		{:else if showErrorMessage}
 			<div class="col-span-12 flex w-full flex-col items-start gap-4">
-				<p class="text-errorRed body-lg font-bold">
-					Delivery Failed: Unfortunately, your email could not be sent at this time. This might be
-					due to a temporary network issue. Please try sending your message again.
+				<p role="alert" class="text-errorRed body-lg font-bold">
+					{formText.error}
 				</p>
 				<ButtonPrimary
 					type="button"
@@ -318,7 +315,7 @@
 
 <style>
 	.inputError {
-		background-color: rgba(220, 53, 69, 1);
+		background-color: #c82333; /* white text on it passes the contrast rule */
 		color: rgba(251, 253, 254, 1);
 	}
 	.inputError::placeholder {

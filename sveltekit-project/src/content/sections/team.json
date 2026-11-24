@@ -4,47 +4,47 @@
 	"items": [
 		{
 			"name": "Olivia Chen",
-			"role": "Co-Founder, ABC Company",
+			"role": "Co-Founder & CEO",
 			"photo": "/our-team/team-1.webp"
 		},
 		{
 			"name": "Liam Johnson",
-			"role": "Co-Founder, ABC Company",
+			"role": "Co-Founder & CTO",
 			"photo": "/our-team/team-2.webp"
 		},
 		{
 			"name": "Noah Williams",
-			"role": "Co-Founder, ABC Company",
+			"role": "Head of Engineering",
 			"photo": "/our-team/team-3.webp"
 		},
 		{
 			"name": "Sophia Garcia",
-			"role": "Co-Founder & Head of Strategic Partnerships",
+			"role": "Head of Partnerships",
 			"photo": "/our-team/team-4.webp"
 		},
 		{
 			"name": "Oliver Davis",
-			"role": "Co-Founder & Chief Talent and Culture Officer (CTCO)",
+			"role": "Head of People",
 			"photo": "/our-team/team-5.webp"
 		},
 		{
 			"name": "Isabella Rossi",
-			"role": "Co-Founder & Director of Advanced Engineering Solutions",
+			"role": "Lead Solutions Architect",
 			"photo": "/our-team/team-6.webp"
 		},
 		{
 			"name": "Elijah Brown",
-			"role": "Co-Founder & Chief Client Success Officer (CCSO)",
+			"role": "Client Success Lead",
 			"photo": "/our-team/team-7.webp"
 		},
 		{
 			"name": "Ava Rodriguez",
-			"role": "Co-Founder & VP of Global Growth",
+			"role": "Head of Growth",
 			"photo": "/our-team/team-8.webp"
 		},
 		{
 			"name": "Mia Kim",
-			"role": "Co-Founder & Chief Innovation Officer (CINO)",
+			"role": "Head of Innovation",
 			"photo": "/our-team/team-9.webp"
 		}
 	]

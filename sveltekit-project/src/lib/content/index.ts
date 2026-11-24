@@ -43,7 +43,8 @@ type Sections = {
 	stories: { title: string; subtitle: string };
 	'case-studies': { title: string; subtitle: string };
 	quote: { text: string; name: string; role: string };
-	footer: { about: string; companyName: string };
+	footer: { about: string; companyName: string; demoNote: string };
+	'contact-form': { title: string; subtitle: string; note: string; success: string; error: string };
 };
 
 // The "About this project" page (src/content/pages/about-this-project.json).

@@ -267,9 +267,19 @@ collections:
         label: Get in Touch cards (every page)
         file: sveltekit-project/src/content/sections/get-in-touch.json
         fields: *card-section
+      - name: contact-form
+        label: Contact form texts (Contact Us)
+        file: sveltekit-project/src/content/sections/contact-form.json
+        fields:
+          - { name: title, label: Heading, widget: string }
+          - { name: subtitle, label: Intro text, widget: text }
+          - { name: note, label: Demo note above the form, widget: text }
+          - { name: success, label: Message after sending, widget: text }
+          - { name: error, label: Message if sending fails, widget: text }
       - name: footer
         label: Footer (every page)
         file: sveltekit-project/src/content/sections/footer.json
         fields:
           - { name: companyName, label: Company name, widget: string }
           - { name: about, label: About text, widget: text }
+          - { name: demoNote, label: Demo note (says the company is fictional), widget: string }

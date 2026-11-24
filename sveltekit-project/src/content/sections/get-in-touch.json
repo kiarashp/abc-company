@@ -4,17 +4,17 @@
 	"items": [
 		{
 			"title": "Email Us",
-			"text": "contact@abccompany.com",
+			"text": "hello@abccompany.example",
 			"image": "/getInTouch/vector-1.webp"
 		},
 		{
 			"title": "Call Us",
-			"text": "+1 (XXX) XXX-XXXX",
+			"text": "+44 20 7946 0123",
 			"image": "/getInTouch/vector-2.webp"
 		},
 		{
 			"title": "Visit Us",
-			"text": "123, Main Road, London, UK.",
+			"text": "12 Example Street, London, UK",
 			"image": "/getInTouch/vector-3.webp"
 		}
 	]

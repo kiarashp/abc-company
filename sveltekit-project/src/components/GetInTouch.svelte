@@ -131,5 +131,12 @@
 			© {footer.companyName}
 			{new Date().getFullYear()} | All Rights Reserved
 		</p>
+		<p class="text-accent body-md pb-[15px] text-center">
+			{footer.demoNote}
+			<a
+				class="hover:text-primary inline-block py-1 underline duration-300"
+				href="/about-this-project">About this project</a
+			>
+		</p>
 	</div>
 </div>
