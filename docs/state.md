@@ -43,6 +43,7 @@ Done and tested locally on the branch:
    the Vercel project off.
 5. After going live: test real email + GitHub login in `/admin`; re-run Lighthouse live; update the
    server's docs/server.md table (row already added, "being set up").
+   Also the portfolio card in kiapmd-dev (`src/content/projects/abc.md`: github + demo links still old).
 6. Leftover: `D:\KIARASH\WORK\to-polish\svelte-company` is a half-copied leftover of the move
    (all of it is in the new folder and on GitHub). Kia deletes it (auto mode blocked Claude).
 
