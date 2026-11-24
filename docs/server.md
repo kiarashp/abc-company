@@ -52,7 +52,9 @@ Same pattern as Aura (see the server notes, "Adding a non-WordPress app"):
 
 ## Speed (Lighthouse, Nov 2026, before the move)
 
-Phone: speed 94–97, accessibility / best practices / SEO 100 on every page. Computer: 100 in all four.
+Phone: speed 94–98, accessibility / best practices / SEO 100 on every page. Computer: 100 in all four.
+Before the Nov 2026 rework (same test, same computer): phone speed 72–73, accessibility 89–94, SEO 82,
+main content after 10.6–15.6 s, home page 3.2 MB. These numbers are on the page /about-this-project (editable).
 The one tip left is for Caddy: let browsers keep pictures (they have no version in their name, so 7 days, not forever):
 
 ```

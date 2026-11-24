@@ -106,6 +106,10 @@
 					<a class="hover:text-secondary-ink active:text-primary duration-300" href="/contact-us"
 						>Contact Us</a
 					>
+					<a
+						class="hover:text-secondary-ink active:text-primary duration-300"
+						href="/about-this-project">About this project</a
+					>
 				</div>
 			</div>
 			<div class="col-span-6 xl:col-span-3">

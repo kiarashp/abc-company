@@ -1,0 +1,87 @@
+{
+	"seoTitle": "About this project — ABC Company demo",
+	"seoDescription": "How this demo website was rebuilt: a free Git-based CMS, a safer contact form, Lighthouse 97–100, and self-hosting on a small server.",
+	"title": "About this project",
+	"intro": "ABC Company is not a real company. This is a demo website I built to show how I make business websites: fast, safe, easy for the owner to edit, and cheap to run.",
+	"resultsTitle": "Before and after",
+	"resultsIntro": "I first built this site in 2025. In November 2026 I went back over all of it: I fixed security holes, made it much faster, and moved it off paid services.",
+	"results": [
+		{
+			"label": "Speed score on phones (Lighthouse)",
+			"before": "72",
+			"after": "97"
+		},
+		{
+			"label": "Time until the main content shows on a phone",
+			"before": "14.8 s",
+			"after": "2.3 s"
+		},
+		{
+			"label": "Home page download size",
+			"before": "3.2 MB",
+			"after": "0.44 MB"
+		},
+		{
+			"label": "Accessibility score",
+			"before": "94",
+			"after": "100"
+		},
+		{
+			"label": "SEO score",
+			"before": "82",
+			"after": "100"
+		},
+		{
+			"label": "Known security problems in the packages used",
+			"before": "6",
+			"after": "0"
+		}
+	],
+	"resultsNote": "Measured with Google Lighthouse in phone mode, on the same computer and the same test, November 2026. On computers every page now scores 100 in all four Lighthouse categories.",
+	"featuresTitle": "What is inside",
+	"features": [
+		{
+			"title": "Every word is editable",
+			"text": "All texts, pictures, case studies and team members are edited in a simple online editor at /admin. Changes are saved to GitHub and go live in a few minutes. No database, no monthly CMS fee."
+		},
+		{
+			"title": "A contact form that is hard to abuse",
+			"text": "Every field is checked, emails are plain text so nothing harmful can be slipped in, a hidden trap catches spam bots, and each visitor can only send a few messages per hour."
+		},
+		{
+			"title": "Fast on slow phones",
+			"text": "Pages are built ahead of time, pictures are in the small WebP format and sized for the screen, and the first view needs no waiting for extra files."
+		},
+		{
+			"title": "Built for everyone",
+			"text": "Readable colours, clear page structure for screen readers, and animations that switch off for people who prefer less motion."
+		},
+		{
+			"title": "Runs on my own server",
+			"text": "The site runs in a small, locked-down Docker box on my own server. GitHub tests and builds every change, then delivers it automatically."
+		}
+	],
+	"toolsTitle": "Tools",
+	"tools": [
+		"SvelteKit 3",
+		"Svelte 5",
+		"TypeScript",
+		"Tailwind CSS 4",
+		"Sveltia CMS",
+		"Node.js",
+		"Docker",
+		"Caddy",
+		"GitHub Actions",
+		"Brevo email"
+	],
+	"links": [
+		{
+			"label": "See the code on GitHub",
+			"url": "https://github.com/kiarashp/svelte-company"
+		},
+		{
+			"label": "More of my work",
+			"url": "https://kiapmd.dev"
+		}
+	]
+}

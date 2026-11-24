@@ -98,6 +98,48 @@ collections:
       - { name: services, label: Services, file: sveltekit-project/src/content/pages/services.json, fields: *page-fields }
       - { name: contact-us, label: Contact Us, file: sveltekit-project/src/content/pages/contact-us.json, fields: *page-fields }
 
+  - name: project
+    label: About this project
+    description: The page at /about-this-project that explains how the site was built.
+    format: json
+    files:
+      - name: about-this-project
+        label: About this project
+        file: sveltekit-project/src/content/pages/about-this-project.json
+        fields:
+          - { name: title, label: Big heading, widget: string }
+          - { name: intro, label: Intro text, widget: text }
+          - { name: resultsTitle, label: Results heading, widget: string }
+          - { name: resultsIntro, label: Results intro, widget: text }
+          - name: results
+            label: Before and after
+            widget: list
+            summary: '{{fields.label}}: {{fields.before}} → {{fields.after}}'
+            fields:
+              - { name: label, label: What was measured, widget: string }
+              - { name: before, label: Before, widget: string }
+              - { name: after, label: After, widget: string }
+          - { name: resultsNote, label: How it was measured, widget: text }
+          - { name: featuresTitle, label: Features heading, widget: string }
+          - name: features
+            label: Features
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+          - { name: toolsTitle, label: Tools heading, widget: string }
+          - { name: tools, label: Tools, widget: list }
+          - name: links
+            label: Links
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - { name: label, label: Text, widget: string }
+              - { name: url, label: Address, widget: string }
+          - { name: seoTitle, label: Browser tab and Google title, widget: string }
+          - { name: seoDescription, label: Google description, widget: text }
+
   - name: sections
     label: Sections
     description: The parts that make up the pages. Drag cards to change their order.

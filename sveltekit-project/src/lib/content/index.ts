@@ -46,6 +46,23 @@ type Sections = {
 	footer: { about: string; companyName: string };
 };
 
+// The "About this project" page (src/content/pages/about-this-project.json).
+export type ProjectPage = {
+	seoTitle: string;
+	seoDescription: string;
+	title: string;
+	intro: string;
+	resultsTitle: string;
+	resultsIntro: string;
+	results: { label: string; before: string; after: string }[];
+	resultsNote: string;
+	featuresTitle: string;
+	features: { title: string; text: string }[];
+	toolsTitle: string;
+	tools: string[];
+	links: { label: string; url: string }[];
+};
+
 type PageName = 'home' | 'about-us' | 'case-studies' | 'services' | 'contact-us';
 
 // "Folder name → file name without .json → its data".
@@ -80,6 +97,12 @@ export function section<K extends keyof Sections>(name: K): Sections[K] {
 export function page(name: PageName): Page {
 	const data = pageFiles[name];
 	if (!data) throw new Error(`Missing content file: src/content/pages/${name}.json`);
+	return data;
+}
+
+export function projectPage(): ProjectPage {
+	const data = pageFiles['about-this-project'] as unknown as ProjectPage | undefined;
+	if (!data) throw new Error('Missing content file: src/content/pages/about-this-project.json');
 	return data;
 }
 
