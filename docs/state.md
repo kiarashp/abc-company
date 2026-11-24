@@ -45,8 +45,8 @@ into `master` (= first real deploy).
 4. Kia: delete the old OAuth App "ABC Company editor" if not done (GitHub > Developer settings > OAuth Apps).
 5. Re-run Lighthouse on the live address; update the server's docs/server.md row (now "being set up");
    Portfolio card in kiapmd-dev: rewritten in 5 languages and LIVE 24 Nov, now on the /projects stage.
-6. Idea Kia liked (not started): a blog the owner writes at /admin (a Sveltia "Blog posts" collection,
-   /blog list, a page per post, menu link, 2-3 fictional posts). About 1-2 hours. Ask before starting.
+6. Blog at /admin: offered 24 Nov, Kia said "no need for that". Don't offer again unless Kia asks.
+7. Small fix for next time: contact form email placeholder "JohnDoe@gmail.com" -> "jane@example.com" (no real domains).
 
 ## Traps learned
 
