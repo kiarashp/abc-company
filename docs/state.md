@@ -44,19 +44,3 @@ Done and tested locally on the branch:
 5. After going live: test real email + GitHub login in `/admin`; re-run Lighthouse live; update the
    server's docs/server.md table (row already added, "being set up").
    Also the portfolio card in kiapmd-dev (`src/content/projects/abc.md`: github + demo links still old).
-6. Leftover: `D:\KIARASH\WORK\to-polish\svelte-company` is a half-copied leftover of the move
-   (all of it is in the new folder and on GitHub). Kia deletes it (auto mode blocked Claude).
-
-## Traps learned
-
-- SvelteKit 3 changed a lot: settings live in `vite.config.ts` (no `svelte.config.js`), `$lib` → `#lib/…`
-  with the file ending (`#lib/content/index.ts`), env vars are declared in `src/env.ts` and imported from
-  `$app/env/private`, `Handle` type comes from `@sveltejs/kit/hooks`, `redirect()` refuses outside sites.
-- The old version (commit edb0236) only builds with `SENDGRID_API_KEY=anything` set.
-- Flat cartoon pictures got BIGGER when re-encoded smaller; only photos and the blurry circles shrank.
-- Full-page screenshots leave lazy pictures as blank gaps: scroll first before judging.
-- Lighthouse: a failed run can leave the old report file; delete the report before each run.
-- Test: in `sveltekit-project/`, `pnpm build && PORT=4319 node build`, then open http://localhost:4319.
-  `/admin` shows the editor login; real saving needs the GitHub login (after the move).
-- Moving a project folder with PowerShell's Move-Item: if Windows can't simply rename it, Move-Item copies and
-  deletes file by file and stops halfway (read-only git files). Use `git clone` into the new place instead.
