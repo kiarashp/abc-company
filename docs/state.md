@@ -37,7 +37,8 @@ and auto-pull line pushed in the server repo; delivery key on the server + repo 
 into `master` (= first real deploy).
 
 1. (Done 24 Nov) First deploy: tests + delivery passed, box healthy, pages 200, /data writable, login goes to GitHub.
-2. Kia: log in at /admin, save a small change; send a test message with the contact form.
+2. (Done 24 Nov) /admin login + save works end to end. Still to test: a contact form message (Kia).
+   Kia's test edit "From !! startups" in the home subtitle is live: undo it in /admin.
 3. Old address: Kia points Porkbun `svelte-abc` at 85.31.148.209, then add a Caddy block forwarding
    svelte-abc.kiapmd.dev to abc.kiapmd.dev; then turn the Vercel project off (it fails to build the new code
    anyway, so the old site stays frozen there until then).
@@ -56,6 +57,8 @@ into `master` (= first real deploy).
 - Lighthouse: a failed run can leave the old report file; delete the report before each run.
 - Test: in `sveltekit-project/`, `pnpm build && PORT=4319 node build`, then open http://localhost:4319.
   `/admin` shows the editor login; real saving needs the GitHub login (after the move).
+- Sveltia saves JSON with 2 spaces; Prettier wanted tabs, so the first real /admin save (24 Nov) failed `pnpm lint`
+  and was not deployed. Fixed: `src/content/` is in `.prettierignore`. After CMS changes, test a REAL save end to end.
 - Scripts committed from Windows lose their "runnable" mark: `git update-index --chmod=+x <file>` (the first
   deploy failed with "receive-image.sh: Permission denied").
 - Moving a project folder with PowerShell's Move-Item: if Windows can't simply rename it, Move-Item copies and
