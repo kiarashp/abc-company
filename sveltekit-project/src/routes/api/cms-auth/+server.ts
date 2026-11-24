@@ -11,7 +11,8 @@ import type { RequestHandler } from './$types';
 export const prerender = false;
 
 export const GET: RequestHandler = ({ url, cookies }) => {
-	if (!GITHUB_CLIENT_ID) error(503, 'Editor login is not set up on this server (GITHUB_CLIENT_ID).');
+	if (!GITHUB_CLIENT_ID)
+		error(503, 'Editor login is not set up on this server (GITHUB_CLIENT_ID).');
 
 	// A random value we check again when GitHub sends the visitor back, so nobody can
 	// trick a browser into finishing a login it never started.

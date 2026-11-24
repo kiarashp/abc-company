@@ -29,4 +29,4 @@ const Faqs: Faq[] = [
 			'Yes, we offer dedicated teams tailored to your ongoing project needs. This ensures consistent expertise, deep project understanding, and seamless collaboration throughout the project lifecycle, from development to maintenance and continuous improvement.'
 	}
 ];
-export default  Faqs ;
+export default Faqs;

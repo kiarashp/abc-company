@@ -47,7 +47,9 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 		return page(origin, 'error', { message: 'Editor login is not set up on this server.' });
 	}
 	if (!code || !state || !expected || state !== expected) {
-		return page(origin, 'error', { message: 'The login link is old or invalid. Please try again.' });
+		return page(origin, 'error', {
+			message: 'The login link is old or invalid. Please try again.'
+		});
 	}
 
 	try {

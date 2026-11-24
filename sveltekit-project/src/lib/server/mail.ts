@@ -53,7 +53,10 @@ export async function sendMail(mail: Mail): Promise<'sent' | 'capped' | 'off' | 
 			connectionTimeout: 15_000,
 			socketTimeout: 20_000
 		});
-		await transport.sendMail({ from: MAIL_FROM || 'ABC Company demo <svelte-abc@kiapmd.dev>', ...mail });
+		await transport.sendMail({
+			from: MAIL_FROM || 'ABC Company demo <svelte-abc@kiapmd.dev>',
+			...mail
+		});
 		return 'sent';
 	} catch (e) {
 		// Give the slot back: nothing was sent.

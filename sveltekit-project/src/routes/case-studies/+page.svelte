@@ -5,9 +5,11 @@
 
 <svelte:head>
 	<title>Case Studies — ABC Company</title>
-	<meta name="description" content="See how ABC Company has helped businesses worldwide with tailored engineering solutions." />
+	<meta
+		name="description"
+		content="See how ABC Company has helped businesses worldwide with tailored engineering solutions."
+	/>
 </svelte:head>
-
 
 <Hero
 	title="Case Studies"

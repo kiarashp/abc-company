@@ -23,13 +23,13 @@
 		<!-- each faq -->
 		<div class="flex w-full flex-col bg-white">
 			<button
-				class="mt-[26px] flex cursor-pointer justify-between items-center px-[24px] gap-3"
+				class="mt-[26px] flex cursor-pointer items-center justify-between gap-3 px-[24px]"
 				onclick={() => accordionClicked(faq.id)}
 				aria-expanded={faq.id === openedFaq}
 				aria-controls={`faq-panel-${faq.id}`}
 				id={`faq-button-${faq.id}`}
 			>
-				<p class="heading-md text-primary cursor-pointer duration-300 active:scale-95 text-start">
+				<p class="heading-md text-primary cursor-pointer text-start duration-300 active:scale-95">
 					{faq.question}
 				</p>
 

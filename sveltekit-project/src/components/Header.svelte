@@ -35,10 +35,10 @@
 	});
 </script>
 
-<div bind:this={sentinel} class="pointer-events-none absolute left-0 top-0 h-1"></div>
+<div bind:this={sentinel} class="pointer-events-none absolute top-0 left-0 h-1"></div>
 
 <div
-	class="font-nav paddingContainer fixed left-0 top-0 z-50 flex h-[102px] w-[100vw] items-center
+	class="font-nav paddingContainer fixed top-0 left-0 z-50 flex h-[102px] w-[100vw] items-center
 	 justify-between transition-all duration-300
 	ease-in-out
 	{isScrolled ? '   bg-white shadow-lg   backdrop-blur-sm' : 'bg-transparent '}
@@ -85,10 +85,13 @@
 	<div class="relative flex h-full w-1/2 items-center justify-end xl:hidden">
 		{#if menuOpen}
 			<div
-				class="bg-primary heading-sm body-md fixed right-0 top-0 z-30 flex h-[100vh]
+				class="bg-primary heading-sm body-md fixed top-0 right-0 z-30 flex h-[100vh]
 			 w-[40%] flex-col items-center gap-5 px-4 pt-[102px] text-white transition-all xl:hidden"
 				transition:slide={{ duration: 300, axis: 'x' }}
-				use:clickOutside={{callback: () => (menuOpen = false), excludeEl: document.querySelector('#burger-x-menu') as HTMLElement}}
+				use:clickOutside={{
+					callback: () => (menuOpen = false),
+					excludeEl: document.querySelector('#burger-x-menu') as HTMLElement
+				}}
 			>
 				<a
 					class="active:text-secondary cursor-pointer transition duration-300 hover:text-gray-500"
@@ -126,7 +129,7 @@
 			id="burger-x-menu"
 		>
 			<div
-				class=" active:scale-85 flex h-full w-full items-center justify-start transition-all duration-300 pointer-events-none"
+				class=" pointer-events-none flex h-full w-full items-center justify-start transition-all duration-300 active:scale-85"
 			>
 				<span
 					class={`text-accent absolute block h-0.5 w-7 transform bg-current transition duration-500 ease-in-out ${menuOpen ? 'rotate-45' : '-translate-y-1.5'}`}

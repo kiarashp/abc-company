@@ -9,4 +9,3 @@
 	contents={joinUses}
 	gridCols="md:col-span-4 xl:col-span-4"
 />
-

@@ -26,8 +26,8 @@
 	--color-accent-hover: rgba(65, 90, 117, 1); /* Slightly darker accent for hover */
 
 	--font-sans:
-		'Geist Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-		'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+		'Geist Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+		Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
 }
 
 .font-nav {
@@ -50,7 +50,7 @@
 		@apply text-[1rem] md:text-[1.375rem] 2xl:text-[1.5rem];
 	}
 	.body-lg {
-		@apply text-[0.8.5rem] md:text-[1.0625rem] 2xl:text-[1.125rem];
+		@apply text-[0.9375rem] md:text-[1.0625rem] 2xl:text-[1.125rem];
 	}
 	.body-md {
 		@apply text-[0.79rem] md:text-[0.975rem] 2xl:text-[1rem];
@@ -61,7 +61,7 @@
 	.max-h-unset {
 		max-height: unset;
 	}
-	.paddingContainer{
-		@apply xl:px-[7rem] md:px-[3rem] px-[2rem]
+	.paddingContainer {
+		@apply px-[2rem] md:px-[3rem] xl:px-[7rem];
 	}
 }

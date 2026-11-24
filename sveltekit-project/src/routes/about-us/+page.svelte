@@ -9,9 +9,11 @@
 
 <svelte:head>
 	<title>About Us — ABC Company</title>
-	<meta name="description" content="Meet the team behind ABC Company and the values that drive our engineering work." />
+	<meta
+		name="description"
+		content="Meet the team behind ABC Company and the values that drive our engineering work."
+	/>
 </svelte:head>
-
 
 <Hero
 	title="About Us"
@@ -20,7 +22,7 @@
 	showGrowingClients={false}
 />
 <TimeLine />
-<WhatWeStand/>
-<OurTeam/>
-<JoinUs/>
-<OurFocus/>
+<WhatWeStand />
+<OurTeam />
+<JoinUs />
+<OurFocus />

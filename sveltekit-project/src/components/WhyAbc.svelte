@@ -1,6 +1,6 @@
 <script lang="ts">
-import whyAbcs from '#lib/db/whyAbc.ts';
-import SimpleCards from './SimpleCards.svelte';
+	import whyAbcs from '#lib/db/whyAbc.ts';
+	import SimpleCards from './SimpleCards.svelte';
 </script>
 
 <SimpleCards
@@ -10,5 +10,3 @@ import SimpleCards from './SimpleCards.svelte';
 	contents={whyAbcs}
 	gridCols="md:col-span-4 xl:col-span-4"
 />
-
-

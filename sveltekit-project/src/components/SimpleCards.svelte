@@ -1,14 +1,20 @@
 <script lang="ts">
 	import ButtonOutline from './ButtonOutline.svelte';
 	import { goto } from '$app/navigation';
-    interface Props {
-        title: string;
-        subtitle: string;
-        contents: { imgUrl: string; title: string; desc: string }[];
+	interface Props {
+		title: string;
+		subtitle: string;
+		contents: { imgUrl: string; title: string; desc: string }[];
 		gridCols?: string;
 		consultation?: boolean;
-    }
-    let {title,subtitle,contents,gridCols="md:col-span-6 xl:col-span-4",consultation=false}:Props=$props();
+	}
+	let {
+		title,
+		subtitle,
+		contents,
+		gridCols = 'md:col-span-6 xl:col-span-4',
+		consultation = false
+	}: Props = $props();
 </script>
 
 <div class="paddingContainer mt-[30px] flex flex-col xl:mt-[96px]">
@@ -16,13 +22,16 @@
 	<p class="body-lg w-12/12 xl:w-9/12">
 		{subtitle}
 	</p>
-	<div class="grid w-full grid-cols-12 justify-items-center gap-4 xl:gap-[30px] mt-4">
+	<div class="mt-4 grid w-full grid-cols-12 justify-items-center gap-4 xl:gap-[30px]">
 		{#each contents as content (content.title)}
-			<div
-				class="col-span-12 w-full flex flex-col items-center justify-start {gridCols}"
-			>
+			<div class="col-span-12 flex w-full flex-col items-center justify-start {gridCols}">
 				<div class="flex h-[300px] w-full max-w-[300px] items-center justify-center">
-					<img class=" h-full max-w-full object-contain" src={content.imgUrl} alt={content.title} loading="lazy" />
+					<img
+						class=" h-full max-w-full object-contain"
+						src={content.imgUrl}
+						alt={content.title}
+						loading="lazy"
+					/>
 				</div>
 				<p class="heading-md text-secondary mt-[24px] self-start">{content.title}</p>
 				<p class="body-lg text-accent mt-[11px] self-start">{content.desc}</p>
@@ -31,8 +40,12 @@
 	</div>
 	{#if consultation}
 		<div class="mt-[40px] flex items-center justify-center">
-			<ButtonOutline buttonTxt="Get a consultation" onclick={()=>{goto('/contact-us/#contact-form')}}/>
+			<ButtonOutline
+				buttonTxt="Get a consultation"
+				onclick={() => {
+					goto('/contact-us/#contact-form');
+				}}
+			/>
 		</div>
 	{/if}
-
 </div>

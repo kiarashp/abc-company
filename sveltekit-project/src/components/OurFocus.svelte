@@ -1,4 +1,4 @@
-<div class="w-full flex flex-col items-center  gap-[45px] paddingContainer xl:mt-[96px] mt-[60px] ">
+<div class="paddingContainer mt-[60px] flex w-full flex-col items-center gap-[45px] xl:mt-[96px]">
 	<p class="heading-xl text-center text-pretty">
 		“Our focus is on creating products and services that empower businesses, streamline operations,
 		and foster growth in the digital era.”

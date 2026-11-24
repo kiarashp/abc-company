@@ -4,7 +4,6 @@
 	import { page } from '$app/state';
 	import { tick } from 'svelte';
 
-
 	let formEle: HTMLFormElement | undefined = $state();
 	$effect(() => {
 		if (page.url.hash === '#contact-form') {
@@ -106,7 +105,6 @@
 			} finally {
 				isLoading = false;
 			}
-
 		} else {
 			contactName.touched = true;
 			contactEmail.touched = true;
@@ -122,7 +120,6 @@
 	<title>Contact Us — ABC Company</title>
 	<meta name="description" content="Get in touch with ABC Company to talk about your project." />
 </svelte:head>
-
 
 <Hero
 	title="Get In Touch"
@@ -149,7 +146,7 @@
 				class="absolute inset-0 z-20 col-span-12 flex h-full w-full items-center justify-center rounded-sm bg-[rgba(21,29,38,0.8)]"
 			>
 				<div
-					class="border-secondary border-t-accent h-15 w-15 border-6 animate-spin rounded-full"
+					class="border-secondary border-t-accent h-15 w-15 animate-spin rounded-full border-6"
 				></div>
 			</div>
 		{/if}
@@ -165,7 +162,11 @@
 					Delivery Failed: Unfortunately, your email could not be sent at this time. This might be
 					due to a temporary network issue. Please try sending your message again.
 				</p>
-				<ButtonPrimary type="button" btnTxt="Try again" onclick={() => (showErrorMessage = false)} />
+				<ButtonPrimary
+					type="button"
+					btnTxt="Try again"
+					onclick={() => (showErrorMessage = false)}
+				/>
 			</div>
 		{:else}
 			<!-- first name -->
@@ -253,7 +254,7 @@
 						}}
 					/>
 					<div
-						class="absolute right-0 top-[50%] z-20 flex aspect-square h-[50%] w-auto -translate-y-[50%] items-center justify-center"
+						class="absolute top-[50%] right-0 z-20 flex aspect-square h-[50%] w-auto -translate-y-[50%] items-center justify-center"
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
 							><!-- Icon from Bootstrap Icons by The Bootstrap Authors - https://github.com/twbs/icons/blob/main/LICENSE.md --><path
@@ -308,7 +309,13 @@
 			<!-- hidden spam trap: people never see this field -->
 			<div class="hidden" aria-hidden="true">
 				<label for="website-input">Website</label>
-				<input id="website-input" name="website" tabindex="-1" autocomplete="off" bind:value={website} />
+				<input
+					id="website-input"
+					name="website"
+					tabindex="-1"
+					autocomplete="off"
+					bind:value={website}
+				/>
 			</div>
 			<!-- button -->
 			<div class="col-span-12 w-full">

@@ -21,7 +21,11 @@
 			"
 			>
 				<!-- year-->
-				<div class="flex items-center xl:justify-between {index % 2 === 0 ? 'justify-start' : 'justify-end'}">
+				<div
+					class="flex items-center xl:justify-between {index % 2 === 0
+						? 'justify-start'
+						: 'justify-end'}"
+				>
 					<span
 						class="bg-secondary h-[5px] w-[20px] xl:block
 						{index % 2 === 0 ? 'block' : 'hidden '}"

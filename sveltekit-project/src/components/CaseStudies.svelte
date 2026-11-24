@@ -35,7 +35,7 @@
 			>
 				<div class="flex w-full items-center justify-center overflow-hidden">
 					<img
-						class="group-hover/eachPost:scale-130 h-[300px] w-full rounded-lg object-cover transition-transform duration-[2s] ease-in-out md:h-full md:object-contain"
+						class="h-[300px] w-full rounded-lg object-cover transition-transform duration-[2s] ease-in-out group-hover/eachPost:scale-130 md:h-full md:object-contain"
 						src="/case-studies/{caseStudy.imgUrl}.webp"
 						alt={caseStudy.title}
 						loading="lazy"

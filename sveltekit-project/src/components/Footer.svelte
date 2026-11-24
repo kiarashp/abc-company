@@ -1,4 +1,5 @@
 <script>
-    import GetInTouch from "./GetInTouch.svelte";
+	import GetInTouch from './GetInTouch.svelte';
 </script>
-<GetInTouch/>
+
+<GetInTouch />

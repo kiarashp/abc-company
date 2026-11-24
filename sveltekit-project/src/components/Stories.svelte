@@ -9,7 +9,6 @@
 	}
 
 	let { stories }: Props = $props();
-
 </script>
 
 <div class="paddingContainer mt-[96px] flex flex-col">

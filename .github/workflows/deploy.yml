@@ -38,7 +38,7 @@ jobs:
           cache-dependency-path: sveltekit-project/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
-      - run: pnpm exec eslint .
+      - run: pnpm lint
       - run: pnpm build
 
   deploy:

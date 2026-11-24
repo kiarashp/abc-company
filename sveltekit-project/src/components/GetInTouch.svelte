@@ -26,9 +26,8 @@
 				</div>
 				<!-- description about us -->
 				<p class="text-accent body-lg mt-[30px]">
-					We offers a comprehensive suite of digital marketing services that cover all aspects of
-					our online presence. From SEO and social media marketing to content creation and PPC
-					advertising, they have the expertise and resources to handle our diverse marketing needs.
+					We deliver engineering, consulting and digital solutions for businesses of every size,
+					from the first prototype to a global rollout. Reliable, scalable and built to last.
 				</p>
 				<!-- social media icons -->
 				<div class="mt-[30px] flex items-center gap-[12px]">
@@ -98,11 +97,18 @@
 			<div class="col-span-6 xl:col-span-3">
 				<p class="heading-md">Navigation</p>
 				<div class="body-lg text-accent mt-[24px] flex flex-col gap-[12px]">
-					<a class="hover:text-secondary active:text-primary duration-300" href="/about-us">About Us</a>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/case-studies">Case Studies</a>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/services">Services</a>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/contact-us">Contact Us</a>
-
+					<a class="hover:text-secondary active:text-primary duration-300" href="/about-us"
+						>About Us</a
+					>
+					<a class="hover:text-secondary active:text-primary duration-300" href="/case-studies"
+						>Case Studies</a
+					>
+					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
+						>Services</a
+					>
+					<a class="hover:text-secondary active:text-primary duration-300" href="/contact-us"
+						>Contact Us</a
+					>
 				</div>
 			</div>
 			<div class="col-span-6 xl:col-span-3">

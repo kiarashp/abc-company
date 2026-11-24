@@ -6,7 +6,7 @@
 </script>
 
 <div
-	class="relative mx-auto flex min-h-screen max-w-[1800px] flex-col bg-[url(/decorative/experties-bg.webp)] bg-center bg-repeat overflow-hidden"
+	class="relative mx-auto flex min-h-screen max-w-[1800px] flex-col overflow-hidden bg-[url(/decorative/experties-bg.webp)] bg-center bg-repeat"
 >
 	<!-- noise overlay -->
 	<div

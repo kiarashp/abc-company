@@ -9,4 +9,3 @@
 	contents={whatWeStandFors}
 	gridCols="md:col-span-6 xl:col-span-3"
 />
-
