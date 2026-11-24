@@ -1,0 +1,9 @@
+{
+	"title": "Cloud Collaboration for Hybrid Engineering Teams",
+	"image": "/case-studies/post-4.webp",
+	"shortChallenge": "The client’s remote teams struggled with misaligned tools, version conflicts, and communication breakdowns across time zones.",
+	"shortSolution": "ABC Company delivered a secure, centralized platform for real-time document editing, version tracking, and communication integration, significantly improving alignment, speed, and output for global teams.",
+	"challenge": "The client, with its geographically dispersed and hybrid engineering teams, faced acute operational inefficiencies. They were crippled by fragmented and misaligned collaboration tools, leading to constant version conflicts in critical project documentation and design files. Communication breakdowns were rampant, exacerbated by significant time zone differences that hindered real-time decision-making and project progress, ultimately impacting productivity and project timelines.",
+	"solution": "ABC Company engineered and deployed a secure, centralized cloud-native collaboration platform specifically tailored for the client's engineering workflows. This comprehensive solution provided real-time document co-editing capabilities for design files, code, and project documentation, eliminating version control chaos. Integrated robust version tracking and rollback features ensured data integrity and simplified iteration. The platform also incorporated unified communication channels, including integrated chat, video conferencing, and asynchronous messaging, bridging time zone gaps and fostering seamless team interaction. This strategic implementation significantly improved team alignment, accelerated project delivery, and boosted the overall output quality for their global engineering operations.",
+	"order": 4
+}

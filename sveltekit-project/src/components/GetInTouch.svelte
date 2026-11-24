@@ -1,15 +1,13 @@
 <script lang="ts">
-	import getInTouches from '#lib/db/getIntouch.ts';
+	import { section } from '#lib/content/index.ts';
 	import SimpleCards from './SimpleCards.svelte';
+
+	const footer = section('footer');
+	// The footer's service links follow the "Our Expertise" list, so they never go out of date.
+	const services = section('expertise').items;
 </script>
 
-<SimpleCards
-	title="Get in Touch Today"
-	subtitle="Let’s create the future of your business together. Whether you need consulting, development, or
-		robust digital solutions, ABC Company is here to help."
-	contents={getInTouches}
-	gridCols="md:col-span-4 xl:col-span-4"
-/>
+<SimpleCards section={section('get-in-touch')} gridCols="md:col-span-4 xl:col-span-4" />
 <div class="paddingContainer mt-8 flex flex-col xl:mt-[96px]">
 	<!-- divider -->
 	<div class="mt-[45px] h-0.5 w-full bg-[rgba(81,113,147,0.5)]"></div>
@@ -22,12 +20,11 @@
 				<!-- logo -->
 				<div class="flex items-center gap-[9px]">
 					<div class="bg-primary h-[48px] w-[48px] rounded-[4px]"></div>
-					<p class="heading-l text-primary">ABC Company</p>
+					<p class="heading-l text-primary">{footer.companyName}</p>
 				</div>
 				<!-- description about us -->
 				<p class="text-accent body-lg mt-[30px]">
-					We deliver engineering, consulting and digital solutions for businesses of every size,
-					from the first prototype to a global rollout. Reliable, scalable and built to last.
+					{footer.about}
 				</p>
 				<!-- social media icons -->
 				<div class="mt-[30px] flex items-center gap-[12px]">
@@ -96,7 +93,7 @@
 			</div>
 			<div class="col-span-6 xl:col-span-3">
 				<p class="heading-md">Navigation</p>
-				<div class="body-lg text-accent mt-[24px] flex flex-col gap-[12px]">
+				<div class="body-lg text-accent mt-[24px] flex flex-col gap-[4px] [&>a]:py-1">
 					<a class="hover:text-secondary active:text-primary duration-300" href="/about-us"
 						>About Us</a
 					>
@@ -113,25 +110,12 @@
 			</div>
 			<div class="col-span-6 xl:col-span-3">
 				<p class="heading-md">Services</p>
-				<div class="body-lg text-accent mt-[24px] flex flex-col gap-[12px]">
-					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
-						>Legacy System Migration</a
-					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
-						>ERP Implementation</a
-					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
-						>Engineering Consulting</a
-					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
-						>Product Consulting</a
-					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
-						>Automated Teams</a
-					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
-						>Cybersecurity Services</a
-					>
+				<div class="body-lg text-accent mt-[24px] flex flex-col gap-[4px] [&>a]:py-1">
+					{#each services as service (service.title)}
+						<a class="hover:text-secondary active:text-primary duration-300" href="/services"
+							>{service.title}</a
+						>
+					{/each}
 				</div>
 			</div>
 		</div>
@@ -140,7 +124,8 @@
 		<div class="mt-[45px] h-0.5 w-full bg-[rgba(81,113,147,0.5)]"></div>
 
 		<p class="text-accent body-lg mt-[45px] pb-[15px] text-center">
-			© ABC Company {new Date().getFullYear()} | All Rights Reserved
+			© {footer.companyName}
+			{new Date().getFullYear()} | All Rights Reserved
 		</p>
 	</div>
 </div>

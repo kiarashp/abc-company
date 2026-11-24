@@ -1,31 +1,16 @@
 <script lang="ts">
-	import Hero from '../components/Hero.svelte';
-	import Experties from '../components/Experties.svelte';
-	import OurImpact from '../components/OurImpact.svelte';
-	import WhyAbc from '../components/WhyAbc.svelte';
-	import Stories from '../components/Stories.svelte';
+	import Hero from '#components/Hero.svelte';
+	import Experties from '#components/Experties.svelte';
+	import OurImpact from '#components/OurImpact.svelte';
+	import WhyAbc from '#components/WhyAbc.svelte';
+	import Stories from '#components/Stories.svelte';
 	import Faq from '#components/Faq.svelte';
-
-	const { data } = $props();
+	import { page } from '#lib/content/index.ts';
 </script>
 
-<svelte:head>
-	<title>ABC Company — Engineering & Digital Solutions</title>
-	<meta
-		name="description"
-		content="From startups to multinational corporations, ABC Company delivers scalable, reliable and cost-effective engineering services."
-	/>
-</svelte:head>
-
-<Hero
-	title="Empowering
-Global Businesses"
-	subtitle="From startups to multinational corporations,we deliver scalable, reliable, and cost-effective services to address your unique challenges."
-	description="Transform your business with expert engineering, seamless migrations, and innovative digital solutions, no matter where you are."
-	showGrowingClients={true}
-/>
+<Hero page={page('home')} showGrowingClients={true} />
 <Experties />
 <OurImpact />
 <WhyAbc />
-<Stories stories={data.stories} />
+<Stories />
 <Faq />

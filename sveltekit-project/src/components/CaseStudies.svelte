@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ButtonOutline from './ButtonOutline.svelte';
-	import caseStudies from '#lib/db/caseStudies.ts';
+	import { caseStudies, section } from '#lib/content/index.ts';
+	const heading = section('case-studies');
 
 	import { backInOut } from 'svelte/easing';
 
@@ -20,23 +21,23 @@
 </script>
 
 <div class="paddingContainer mt-[96px] flex flex-col">
-	<p class="heading-xl">Featured Case Studies</p>
+	<p class="heading-xl">{heading.title}</p>
 	<p class="body-lg w-12/12 xl:w-9/12">
-		Discover how our tailored solutions have transformed businesses across industries.
+		{heading.subtitle}
 	</p>
 	<div
 		class="relative mt-[45px] grid w-full grid-cols-12 gap-3 bg-[#F5F5F5] md:px-[24px] xl:gap-[30px]"
 	>
-		{#each primaryStudies as caseStudy (caseStudy.title)}
+		{#each primaryStudies as caseStudy (caseStudy.slug)}
 			<a
-				href="/case-studies{caseStudy.slug}"
+				href="/case-studies/{caseStudy.slug}"
 				class="group/eachPost col-span-12 flex flex-col gap-[11px] pb-5 duration-300 hover:bg-gray-200 md:col-span-4"
 				in:fly={{ x: -100, y: 0, duration: 500, easing: backInOut }}
 			>
 				<div class="flex w-full items-center justify-center overflow-hidden">
 					<img
 						class="h-[300px] w-full rounded-lg object-cover transition-transform duration-[2s] ease-in-out group-hover/eachPost:scale-130 md:h-full md:object-contain"
-						src="/case-studies/{caseStudy.imgUrl}.webp"
+						src={caseStudy.image}
 						alt={caseStudy.title}
 						loading="lazy"
 						width="1024"

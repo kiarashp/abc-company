@@ -1,0 +1,9 @@
+{
+	"title": "Transforming Legacy Systems in Smart Manufacturing",
+	"image": "/case-studies/post-1.webp",
+	"shortChallenge": "The client’s outdated automation platform lacked real-time monitoring and caused excessive downtime and inefficiencies.",
+	"shortSolution": "ABC Company built a scalable IoT-enabled system with predictive maintenance and real-time analytics dashboards, reducing downtime and improving throughput by enabling data-driven decisions.",
+	"challenge": "The client faced significant operational hurdles due to a critical lack of granular visibility into their extensive solar energy infrastructure. They simply couldn't monitor individual solar units, making it impossible to identify specific underperforming panels or strings within their vast solar fields. This blind spot directly led to an inability to predict potential outages or even subtle drops in efficiency. The reactive nature of their maintenance — only addressing issues after they had caused significant downtime — resulted in frequent inefficiencies, substantial energy production losses, and an overall unreliable output from their renewable assets.",
+	"solution": "To address these pervasive challenges, ABC Company engineered and deployed a cutting-edge, high-resolution data integration system, meticulously designed to ingest real-time telemetry from every single solar panel and inverter across the client's geographically dispersed solar fields. This robust platform was then paired with our proprietary AI-based performance monitoring suite, powered by advanced machine learning algorithms.",
+	"order": 1
+}

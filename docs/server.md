@@ -11,10 +11,18 @@ Address: https://svelte-abc.kiapmd.dev (was on Vercel until the move).
 
 ## Content editing (CMS = content editor)
 
-- The "Success Stories" on the home page are JSON files (small text data files) in
-  `sveltekit-project/src/content/stories/`. Until Nov 2026 they were in Sanity (an online CMS); now they live in git.
-- Editor: **Sveltia CMS** (free, open source) at `/admin`. Its settings: `sveltekit-project/static/admin/config.yml`.
+- ALL the site's words and pictures are JSON files (small text data files) in `sveltekit-project/src/content/`:
+  - `case-studies/` one file per case study; the file name is its address (`/case-studies/<file name>`).
+    Old addresses `/case-studies/1`…`6` redirect to the new ones (`src/hooks.server.ts`).
+  - `stories/` the client quotes on the home page.
+  - `pages/` the top text of each page plus its browser-tab / Google text.
+  - `sections/` every section (services, numbers, FAQ, timeline, team, values, logos, quote, footer...).
+  - The code reads them in `sveltekit-project/src/lib/content/index.ts` (with types, so a wrong file fails the check).
+  - Until Nov 2026 the stories were in Sanity (an online CMS) and the rest was typed into the code.
+- The contact form's service list and the footer's service links follow "Our Expertise".
+- Editor: **Sveltia CMS** (free, open source) at `/admin`. Its forms: `sveltekit-project/static/admin/config.yml`.
   The editor's script version is pinned (fixed) in `static/admin/index.html`.
+  Uploaded pictures are turned into WebP (a small picture format), max 1600 px, and saved in `static/uploads/`.
 - Saving in the editor makes a commit (a saved snapshot) on `master` on GitHub, which starts the normal
   build-and-deploy (below), so the change is live in about 5 minutes.
 - "Log in with GitHub" is handled by this site itself (`src/routes/api/cms-auth/`). It needs a GitHub
@@ -23,8 +31,6 @@ Address: https://svelte-abc.kiapmd.dev (was on Vercel until the move).
   - Authorization callback URL: `https://svelte-abc.kiapmd.dev/api/cms-auth/callback`
   - Its client ID and secret go in the server's `.env` (GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET).
 - Only GitHub users who can push to `kiarashp/svelte-company` can save. GitHub checks that.
-- The other page texts (services, team, FAQ, case studies) are still in `sveltekit-project/src/lib/db/*.ts`,
-  edited in code.
 
 ## On the server
 

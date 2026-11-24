@@ -1,11 +1,6 @@
 <script lang="ts">
-	import joinUses from '#lib/db/joinUs.ts';
+	import { section } from '#lib/content/index.ts';
 	import SimpleCards from './SimpleCards.svelte';
 </script>
 
-<SimpleCards
-	title="Join Us"
-	subtitle="Looking for a career where you can innovate and make an impact? ABC Company is always on the lookout for passionate individuals to join our growing team."
-	contents={joinUses}
-	gridCols="md:col-span-4 xl:col-span-4"
-/>
+<SimpleCards section={section('join-us')} gridCols="md:col-span-4 xl:col-span-4" />

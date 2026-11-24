@@ -1,0 +1,21 @@
+{
+	"title": "Get in Touch Today",
+	"subtitle": "Let’s create the future of your business together. Whether you need consulting, development, or robust digital solutions, ABC Company is here to help.",
+	"items": [
+		{
+			"title": "Email Us",
+			"text": "contact@abccompany.com",
+			"image": "/getInTouch/vector-1.webp"
+		},
+		{
+			"title": "Call Us",
+			"text": "+1 (XXX) XXX-XXXX",
+			"image": "/getInTouch/vector-2.webp"
+		},
+		{
+			"title": "Visit Us",
+			"text": "123, Main Road, London, UK.",
+			"image": "/getInTouch/vector-3.webp"
+		}
+	]
+}

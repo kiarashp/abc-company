@@ -1,0 +1,36 @@
+{
+	"title": "Our Expertise",
+	"subtitle": "We specialize in delivering tailored solutions to address your business needs across these key areas:",
+	"items": [
+		{
+			"title": "Product Consulting",
+			"text": "Strategically position your digital products for success with actionable insights and market expertise.",
+			"image": "/experties/vektor-1.webp"
+		},
+		{
+			"title": "Legacy System Migration",
+			"text": "Seamlessly transform outdated systems to enhance efficiency, scalability, and performance.",
+			"image": "/experties/vektor-2.webp"
+		},
+		{
+			"title": "Automated Teams",
+			"text": "Drive productivity with fully autonomous, high-performing development teams for scalable solutions.",
+			"image": "/experties/vektor-3.webp"
+		},
+		{
+			"title": "Engineering Consulting",
+			"text": "Overcome challenges and foster innovation with expert guidance from our engineering professionals.",
+			"image": "/experties/vektor-4.webp"
+		},
+		{
+			"title": "ERP Implementation",
+			"text": "Deploy robust, customized ERP solutions to optimize and streamline your operations.",
+			"image": "/experties/vektor-5.webp"
+		},
+		{
+			"title": "Cybersecurity Services",
+			"text": "Protect your digital assets with industry-leading security solutions, including comprehensive vulnerability assessments.",
+			"image": "/experties/vektor-6.webp"
+		}
+	]
+}

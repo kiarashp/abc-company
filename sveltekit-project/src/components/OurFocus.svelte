@@ -1,11 +1,15 @@
-<div class="paddingContainer mt-[60px] flex w-full flex-col items-center gap-[45px] xl:mt-[96px]">
-	<p class="heading-xl text-center text-pretty">
-		“Our focus is on creating products and services that empower businesses, streamline operations,
-		and foster growth in the digital era.”
-	</p>
-	<p class="text-secondary body-lg">
-		Panduka Weerasekara
+<script lang="ts">
+	import { section } from '#lib/content/index.ts';
+	const quote = section('quote');
+</script>
+
+<figure
+	class="paddingContainer mt-[60px] flex w-full flex-col items-center gap-[45px] xl:mt-[96px]"
+>
+	<blockquote class="heading-xl text-center text-pretty">“{quote.text}”</blockquote>
+	<figcaption class="text-secondary body-lg text-center">
+		{quote.name}
 		<br />
-		Co-Founder, ABC Company.
-	</p>
-</div>
+		{quote.role}
+	</figcaption>
+</figure>

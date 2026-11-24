@@ -1,0 +1,26 @@
+{
+	"title": "What We Stand For",
+	"subtitle": "Our unwavering values shape our approach to delivering impactful solutions.",
+	"items": [
+		{
+			"title": "Innovation",
+			"text": "Pioneering solutions tailored to your unique needs.",
+			"image": "/what-we-stand/vector-1.webp"
+		},
+		{
+			"title": "Reliability",
+			"text": "Delivering on promises with precision and excellence.",
+			"image": "/what-we-stand/vector-2.webp"
+		},
+		{
+			"title": "Collaboration",
+			"text": "Partnering with clients to achieve shared success.",
+			"image": "/what-we-stand/vector-3.webp"
+		},
+		{
+			"title": "Integrity",
+			"text": "Building trust through transparency and accountability.",
+			"image": "/what-we-stand/vector-4.webp"
+		}
+	]
+}

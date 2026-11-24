@@ -1,0 +1,9 @@
+{
+	"title": "Modernizing FinTech with Zero-Trust Security",
+	"image": "/case-studies/post-6.webp",
+	"shortChallenge": "The FinTech client had aging infrastructure, compliance issues, and increasing audit failures threatening its growth.",
+	"shortSolution": "ABC Company designed a zero-trust cloud infrastructure with real-time compliance automation and end-to-end encryption, enabling the client to pass audits, secure customer trust, and scale operations.",
+	"challenge": "The FinTech client, operating in a highly regulated and rapidly evolving industry, faced critical threats to its sustained growth and market position. Their core issue stemmed from aging, legacy infrastructure that was increasingly unable to meet modern security demands and regulatory requirements. This outdated setup led to persistent compliance issues, resulting in a worrying trend of increasing audit failures. These failures not only risked substantial financial penalties and reputational damage but also severely hindered their ability to attract new customers and expand their service offerings in a competitive landscape, threatening their very trajectory and market relevance.",
+	"solution": "ABC Company engineered and deployed a state-of-the-art, zero-trust cloud infrastructure specifically tailored to the stringent demands of the FinTech sector. This groundbreaking security architecture completely eliminated implicit trust, rigorously verifying every user and device attempting to access network resources, regardless of their location. The solution integrated real-time compliance automation, leveraging AI-driven tools to continuously monitor system configurations and data access patterns against evolving regulatory frameworks like GDPR, PCI DSS, and SOC 2. This proactive approach ensured continuous adherence and significantly streamlined audit processes.",
+	"order": 6
+}

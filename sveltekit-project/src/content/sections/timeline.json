@@ -1,0 +1,41 @@
+{
+	"title": "Our Story",
+	"subtitle": "Founded on the principles of innovation and collaboration, ABC Company was created to bridge the gap between complex engineering challenges and simplified solutions. Over the years, we’ve grown into a global team of experts passionate about helping businesses scale, innovate, and thrive in an ever-changing digital landscape.",
+	"items": [
+		{
+			"year": "2017",
+			"title": "The Beginning",
+			"text": "ABC Company was founded with a vision to provide innovative engineering solutions to startups, focusing on reliability and affordability."
+		},
+		{
+			"year": "2018",
+			"title": "Expanding Expertise",
+			"text": "We diversified our offerings to include legacy system migrations and ERP implementations, catering to small and medium-sized businesses."
+		},
+		{
+			"year": "2019",
+			"title": "Going Global",
+			"text": "ABC Company expanded its reach by serving clients across multiple countries, building strong partnerships with multinational corporations."
+		},
+		{
+			"year": "2020",
+			"title": "Autonomous Teams Launched",
+			"text": "We introduced fully autonomous development teams, enabling clients to scale their projects with ease and efficiency."
+		},
+		{
+			"year": "2021",
+			"title": "Embracing Cybersecurity",
+			"text": "To address growing digital threats, we added comprehensive cybersecurity services, safeguarding our clients’ assets worldwide."
+		},
+		{
+			"year": "2023",
+			"title": "300+ Projects Completed",
+			"text": "With over 300 successful projects delivered globally, we solidified our reputation as a leading provider of tailored engineering solutions."
+		},
+		{
+			"year": "2025",
+			"title": "A Trusted Partner",
+			"text": "ABC Company continues to innovate, serving startups, SMBs, and enterprises with a focus on scalable solutions, global collaboration, and unmatched reliability."
+		}
+	]
+}

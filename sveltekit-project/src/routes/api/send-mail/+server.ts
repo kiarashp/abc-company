@@ -12,19 +12,14 @@
 import { CONTACT_TO_EMAIL } from '$app/env/private';
 import { json } from '@sveltejs/kit';
 import { sendMail } from '#lib/server/mail.ts';
+import { section } from '#lib/content/index.ts';
 import type { RequestHandler } from './$types';
 
 // This address must run live on the server, never be built ahead of time.
 export const prerender = false;
 
-const SERVICES = new Set([
-	'product-consulting',
-	'legacy-system-migration',
-	'automated-teams',
-	'engineering-consulting',
-	'erp-implementation',
-	'cybersecurity-services'
-]);
+// Allowed services: the same list the form offers ("Our Expertise" in the editor).
+const SERVICES = new Set(section('expertise').items.map((s) => s.title));
 
 const LIMITS = { name: 100, email: 200, subject: 200, budget: 15, message: 5000 };
 const EMAIL_SHAPE = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;
@@ -74,7 +69,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 
 	const name = text(body.contactName, LIMITS.name);
 	const email = text(body.contactEmail, LIMITS.email);
-	const service = text(body.contactService, 50);
+	const service = text(body.contactService, 100);
 	const budget = text(String(body.contactBudget ?? ''), LIMITS.budget);
 	const subject = text(body.contactSubject, LIMITS.subject);
 	const message = text(body.contactMessage, LIMITS.message);

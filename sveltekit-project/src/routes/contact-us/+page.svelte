@@ -3,6 +3,10 @@
 	import ButtonPrimary from '#components/ButtonPrimary.svelte';
 	import { page } from '$app/state';
 	import { tick } from 'svelte';
+	import { page as pageContent, section } from '#lib/content/index.ts';
+
+	// The service list follows "Our Expertise" in the editor.
+	const services = section('expertise').items;
 
 	let formEle: HTMLFormElement | undefined = $state();
 	$effect(() => {
@@ -116,17 +120,7 @@
 	}
 </script>
 
-<svelte:head>
-	<title>Contact Us — ABC Company</title>
-	<meta name="description" content="Get in touch with ABC Company to talk about your project." />
-</svelte:head>
-
-<Hero
-	title="Get In Touch"
-	subtitle="Let’s create the future of your business together."
-	description="Whether you need consulting, development, or robust digital solutions, ABC Company is here to help."
-	showGrowingClients={false}
-/>
+<Hero page={pageContent('contact-us')} />
 
 <div class="paddingContainer mt-[96px] flex flex-col">
 	<p class="heading-xl">Let's Talk Business</p>
@@ -227,12 +221,9 @@
 					}}
 				>
 					<option value="" disabled>Choose a service</option>
-					<option value="product-consulting">Product Consulting</option>
-					<option value="legacy-system-migration">Legacy System Migration</option>
-					<option value="automated-teams">Automated Teams</option>
-					<option value="engineering-consulting">Engineering Consulting</option>
-					<option value="erp-implementation">ERP Implementation</option>
-					<option value="cybersecurity-services">Cybersecurity Services</option>
+					{#each services as service (service.title)}
+						<option value={service.title}>{service.title}</option>
+					{/each}
 				</select>
 			</div>
 			<!-- Budget -->

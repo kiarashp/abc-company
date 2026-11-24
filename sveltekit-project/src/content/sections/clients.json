@@ -1,0 +1,29 @@
+{
+	"title": "Join in our ever growing client list",
+	"items": [
+		{
+			"name": "Boltshift",
+			"logo": "/clients/logo1.svg"
+		},
+		{
+			"name": "Nietzsche",
+			"logo": "/clients/logo2.svg"
+		},
+		{
+			"name": "Lightbox",
+			"logo": "/clients/logo3.svg"
+		},
+		{
+			"name": "FeatherDev",
+			"logo": "/clients/logo4.svg"
+		},
+		{
+			"name": "Spherule",
+			"logo": "/clients/logo5.svg"
+		},
+		{
+			"name": "GlobalBank",
+			"logo": "/clients/logo6.svg"
+		}
+	]
+}

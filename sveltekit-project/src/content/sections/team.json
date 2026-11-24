@@ -1,0 +1,51 @@
+{
+	"title": "Meet Our Team",
+	"subtitle": "Our global team of experienced engineers, consultants, and project managers is the backbone of ABC Company. With a shared passion for problem-solving and innovation, we’re dedicated to delivering exceptional results for every client.",
+	"items": [
+		{
+			"name": "Olivia Chen",
+			"role": "Co-Founder, ABC Company",
+			"photo": "/our-team/team-1.webp"
+		},
+		{
+			"name": "Liam Johnson",
+			"role": "Co-Founder, ABC Company",
+			"photo": "/our-team/team-2.webp"
+		},
+		{
+			"name": "Noah Williams",
+			"role": "Co-Founder, ABC Company",
+			"photo": "/our-team/team-3.webp"
+		},
+		{
+			"name": "Sophia Garcia",
+			"role": "Co-Founder & Head of Strategic Partnerships",
+			"photo": "/our-team/team-4.webp"
+		},
+		{
+			"name": "Oliver Davis",
+			"role": "Co-Founder & Chief Talent and Culture Officer (CTCO)",
+			"photo": "/our-team/team-5.webp"
+		},
+		{
+			"name": "Isabella Rossi",
+			"role": "Co-Founder & Director of Advanced Engineering Solutions",
+			"photo": "/our-team/team-6.webp"
+		},
+		{
+			"name": "Elijah Brown",
+			"role": "Co-Founder & Chief Client Success Officer (CCSO)",
+			"photo": "/our-team/team-7.webp"
+		},
+		{
+			"name": "Ava Rodriguez",
+			"role": "Co-Founder & VP of Global Growth",
+			"photo": "/our-team/team-8.webp"
+		},
+		{
+			"name": "Mia Kim",
+			"role": "Co-Founder & Chief Innovation Officer (CINO)",
+			"photo": "/our-team/team-9.webp"
+		}
+	]
+}

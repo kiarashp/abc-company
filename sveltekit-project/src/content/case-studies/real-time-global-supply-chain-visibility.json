@@ -1,0 +1,9 @@
+{
+	"title": "Real-Time Global Supply Chain Visibility",
+	"image": "/case-studies/post-2.webp",
+	"shortChallenge": "The logistics company was hindered by fragmented systems, delayed updates, and poor coordination across its global operations.",
+	"shortSolution": "ABC Company designed and implemented a cloud-native logistics platform with live tracking, route optimization, and automated reporting, giving real-time visibility and operational agility worldwide.",
+	"challenge": "The client, a prominent global logistics company, grappled with a deeply fragmented and inefficient operational landscape. Their existing infrastructure was characterized by disparate, siloed systems that operated independently, leading to critical data inconsistencies and a complete lack of end-to-end visibility across their vast global supply chain. This fragmentation resulted in significant delays in crucial status updates, making it impossible for stakeholders to access accurate, real-time information on shipments. Consequently, they experienced chronic poor coordination between various regional hubs, transportation modes, and warehousing facilities. This absence of a unified view led to frequent miscommunications, reactive problem-solving, increased operational costs due to inefficient resource allocation, and a diminished capacity to meet client demands with precision and agility. The company was essentially operating in the dark, relying on outdated information to make critical, time-sensitive decisions.",
+	"solution": "To overcome these profound challenges, ABC Company undertook a comprehensive digital transformation, designing and implementing a cutting-edge, cloud-native logistics platform. This bespoke solution was meticulously crafted to serve as the central nervous system for the client's global operations, providing unprecedented real-time visibility and fostering a new era of operational agility worldwide.",
+	"order": 2
+}

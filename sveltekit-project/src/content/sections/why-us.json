@@ -1,0 +1,21 @@
+{
+	"title": "Why Choose ABC Company?",
+	"subtitle": "We provide end-to-end solutions to help businesses across industries overcome challenges, innovate, and scale.",
+	"items": [
+		{
+			"title": "Global Reach",
+			"text": "Serving clients worldwide, from startups to enterprises.",
+			"image": "/why-choose/why-1.webp"
+		},
+		{
+			"title": "Scalable Solutions",
+			"text": "Flexible services tailored to businesses of all sizes.",
+			"image": "/why-choose/why-2.webp"
+		},
+		{
+			"title": "Expertise You Can Trust",
+			"text": "Decades of experience delivering quality solutions for complex problems.",
+			"image": "/why-choose/why-3.webp"
+		}
+	]
+}

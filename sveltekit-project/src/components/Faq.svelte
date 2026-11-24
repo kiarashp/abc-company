@@ -1,7 +1,8 @@
 <script lang="ts">
-	import Faqs from '#lib/db/faq.ts';
-	let openedFaq = $state<string | null>(null);
-	function accordionClicked(faqId: string) {
+	import { section } from '#lib/content/index.ts';
+	const faq = section('faq');
+	let openedFaq = $state<number | null>(null);
+	function accordionClicked(faqId: number) {
 		// is it the same opened one
 		if (faqId === openedFaq) {
 			openedFaq = null;
@@ -12,28 +13,27 @@
 </script>
 
 <div class="paddingContainer mt-[96px] flex flex-col">
-	<p class="heading-xl">FAQs</p>
+	<p class="heading-xl">{faq.title}</p>
 	<p class="body-lg w-12/12 xl:w-9/12">
-		Find clear, concise answers about our services, processes, and how we help businesses achieve
-		their goals.
+		{faq.subtitle}
 	</p>
 	<div class="bg-accent mt-[45px] h-0.5 w-full"></div>
 
-	{#each Faqs as faq (faq.id)}
+	{#each faq.items as item, id (item.question)}
 		<!-- each faq -->
 		<div class="flex w-full flex-col bg-white">
 			<button
 				class="mt-[26px] flex cursor-pointer items-center justify-between gap-3 px-[24px]"
-				onclick={() => accordionClicked(faq.id)}
-				aria-expanded={faq.id === openedFaq}
-				aria-controls={`faq-panel-${faq.id}`}
-				id={`faq-button-${faq.id}`}
+				onclick={() => accordionClicked(id)}
+				aria-expanded={id === openedFaq}
+				aria-controls={`faq-panel-${id}`}
+				id={`faq-button-${id}`}
 			>
 				<p class="heading-md text-primary cursor-pointer text-start duration-300 active:scale-95">
-					{faq.question}
+					{item.question}
 				</p>
 
-				{#if faq.id != openedFaq}
+				{#if id != openedFaq}
 					<!-- plus -->
 					<div
 						class="  flex h-[1.5rem] min-w-[1.5rem] cursor-pointer items-center justify-center transition-transform duration-100 active:scale-50"
@@ -66,14 +66,14 @@
 				{/if}
 			</button>
 			<div
-				id={`faq-panel-${faq.id}`}
+				id={`faq-panel-${id}`}
 				role="region"
-				aria-labelledby={`faq-button-${faq.id}`}
-				class="eachFaq text-accent body-lg overflow-hidden px-[24px] {faq.id !== openedFaq
+				aria-labelledby={`faq-button-${id}`}
+				class="eachFaq text-accent body-lg overflow-hidden px-[24px] {id !== openedFaq
 					? 'closed'
 					: 'opened'}"
 			>
-				<p class="pt-[22px]">{faq.answer}</p>
+				<p class="pt-[22px]">{item.answer}</p>
 			</div>
 			<div class="bg-accent mt-[26px] h-0.5 w-full"></div>
 		</div>

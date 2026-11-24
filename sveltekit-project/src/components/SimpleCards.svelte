@@ -1,40 +1,33 @@
 <script lang="ts">
 	import ButtonOutline from './ButtonOutline.svelte';
 	import { goto } from '$app/navigation';
+	import type { Section } from '#lib/content/index.ts';
 	interface Props {
-		title: string;
-		subtitle: string;
-		contents: { imgUrl: string; title: string; desc: string }[];
+		section: Section;
 		gridCols?: string;
 		consultation?: boolean;
 	}
-	let {
-		title,
-		subtitle,
-		contents,
-		gridCols = 'md:col-span-6 xl:col-span-4',
-		consultation = false
-	}: Props = $props();
+	let { section, gridCols = 'md:col-span-6 xl:col-span-4', consultation = false }: Props = $props();
 </script>
 
 <div class="paddingContainer mt-[30px] flex flex-col xl:mt-[96px]">
-	<p class="heading-xl">{title}</p>
+	<p class="heading-xl">{section.title}</p>
 	<p class="body-lg w-12/12 xl:w-9/12">
-		{subtitle}
+		{section.subtitle}
 	</p>
 	<div class="mt-4 grid w-full grid-cols-12 justify-items-center gap-4 xl:gap-[30px]">
-		{#each contents as content (content.title)}
+		{#each section.items as content (content.title)}
 			<div class="col-span-12 flex w-full flex-col items-center justify-start {gridCols}">
 				<div class="flex h-[300px] w-full max-w-[300px] items-center justify-center">
 					<img
 						class=" h-full max-w-full object-contain"
-						src={content.imgUrl}
+						src={content.image}
 						alt={content.title}
 						loading="lazy"
 					/>
 				</div>
 				<p class="heading-md text-secondary mt-[24px] self-start">{content.title}</p>
-				<p class="body-lg text-accent mt-[11px] self-start">{content.desc}</p>
+				<p class="body-lg text-accent mt-[11px] self-start">{content.text}</p>
 			</div>
 		{/each}
 	</div>
@@ -43,7 +36,7 @@
 			<ButtonOutline
 				buttonTxt="Get a consultation"
 				onclick={() => {
-					goto('/contact-us/#contact-form');
+					goto('/contact-us#contact-form');
 				}}
 			/>
 		</div>

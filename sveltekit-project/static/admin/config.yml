@@ -1,6 +1,8 @@
 # Settings for the content editor (Sveltia CMS) at /admin.
 # Each save becomes a commit (a saved snapshot) in this GitHub repo.
 # The push then rebuilds the site, so the change goes live a few minutes later.
+# The site reads these files in src/lib/content/index.ts.
+# Paths are from the top of the repo, which holds the website in "sveltekit-project".
 
 backend:
   name: github
@@ -10,32 +12,222 @@ backend:
   # It needs GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in the server's .env.
   base_url: https://svelte-abc.kiapmd.dev
   auth_endpoint: api/cms-auth
+  commit_messages:
+    create: 'Content: add {{collection}} "{{slug}}"'
+    update: 'Content: update {{collection}} "{{slug}}"'
+    delete: 'Content: delete {{collection}} "{{slug}}"'
+    uploadMedia: 'Content: upload "{{path}}"'
+    deleteMedia: 'Content: delete "{{path}}"'
 
-# Pictures are not used by the stories yet; this is where they would go.
+# New pictures go here, and are shrunk and turned into WebP (a small picture format) on upload.
 media_folder: sveltekit-project/static/uploads
 public_folder: /uploads
+media_libraries:
+  default:
+    config:
+      max_file_size: 5000000 # 5 MB
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 1600
+          height: 1600
+
+site_url: https://svelte-abc.kiapmd.dev
+display_url: https://svelte-abc.kiapmd.dev
+app_title: ABC Company editor
 
 collections:
+  - name: case-studies
+    label: Case Studies
+    label_singular: Case Study
+    description: Each case study has its own page at /case-studies/<file name>.
+    folder: sveltekit-project/src/content/case-studies
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: '{{title}}'
+    identifier_field: title
+    sortable_fields: [order, title]
+    preview_path: /case-studies/{{slug}}
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: image, label: Picture, widget: image }
+      - { name: shortChallenge, label: Short challenge (list page), widget: text }
+      - { name: shortSolution, label: Short solution (list page), widget: text }
+      - { name: challenge, label: Challenge (full page), widget: text, hint: 'Leave an empty line between paragraphs.' }
+      - { name: solution, label: Solution (full page), widget: text, hint: 'Leave an empty line between paragraphs.' }
+      - { name: order, label: Order, widget: number, value_type: int, required: false, hint: Lower numbers show first. }
+
   - name: stories
     label: Success Stories
     label_singular: Success Story
-    description: The short client quotes shown on the home page.
-    # Paths are from the top of the repo, which holds the website in "sveltekit-project".
+    description: The short client quotes on the home page.
     folder: sveltekit-project/src/content/stories
     format: json
     extension: json
     create: true
     delete: true
-    slug: '{{slug}}'
+    slug: '{{title}}'
     identifier_field: title
     sortable_fields: [order, title]
     fields:
       - { name: title, label: Title, widget: string }
       - { name: desc, label: Quote, widget: text }
       - { name: writer, label: Who said it, widget: string, hint: 'e.g. CTO, Healthcare Enterprise' }
-      - name: order
-        label: Order
-        widget: number
-        value_type: int
-        required: false
-        hint: Lower numbers show first on the home page.
+      - { name: order, label: Order, widget: number, value_type: int, required: false, hint: Lower numbers show first. }
+
+  - name: pages
+    label: Page tops
+    description: The big text at the top of each page, and what Google and the browser tab show.
+    format: json
+    files:
+      # "&page-fields" names this field list so the other pages can reuse it with "*page-fields".
+      - name: home
+        label: Home
+        file: sveltekit-project/src/content/pages/home.json
+        fields: &page-fields
+            - { name: title, label: Big heading, widget: string }
+            - { name: subtitle, label: Subheading, widget: text }
+            - { name: description, label: Description, widget: text }
+            - { name: seoTitle, label: Browser tab and Google title, widget: string }
+            - { name: seoDescription, label: Google description, widget: text, hint: 'About 150 characters.' }
+      - { name: about-us, label: About Us, file: sveltekit-project/src/content/pages/about-us.json, fields: *page-fields }
+      - { name: case-studies, label: Case Studies, file: sveltekit-project/src/content/pages/case-studies.json, fields: *page-fields }
+      - { name: services, label: Services, file: sveltekit-project/src/content/pages/services.json, fields: *page-fields }
+      - { name: contact-us, label: Contact Us, file: sveltekit-project/src/content/pages/contact-us.json, fields: *page-fields }
+
+  - name: sections
+    label: Sections
+    description: The parts that make up the pages. Drag cards to change their order.
+    format: json
+    files:
+      - name: expertise
+        label: Our Expertise (Home, Services, footer links)
+        file: sveltekit-project/src/content/sections/expertise.json
+        # "&card-section" names this field list so other card sections reuse it with "*card-section".
+        fields: &card-section
+            - { name: title, label: Heading, widget: string }
+            - { name: subtitle, label: Intro text, widget: text }
+            - name: items
+              label: Cards
+              widget: list
+              summary: '{{fields.title}}'
+              fields:
+                - { name: title, label: Title, widget: string }
+                - { name: text, label: Text, widget: text }
+                - { name: image, label: Picture, widget: image }
+      - name: impact
+        label: Our Impact numbers (Home)
+        file: sveltekit-project/src/content/sections/impact.json
+        fields:
+          - { name: title, label: Heading, widget: string }
+          - { name: subtitle, label: Intro text, widget: text }
+          - name: items
+            label: Numbers
+            widget: list
+            summary: '{{fields.value}} {{fields.label}}'
+            fields:
+              - { name: value, label: Number, widget: string, hint: 'e.g. 95%' }
+              - { name: label, label: Label, widget: string }
+          - name: highlight
+            label: Big number
+            widget: object
+            fields:
+              - { name: value, label: Number, widget: string }
+              - { name: label, label: Label, widget: string }
+      - name: why-us
+        label: Why Choose Us (Home)
+        file: sveltekit-project/src/content/sections/why-us.json
+        fields: *card-section
+      - name: stories
+        label: Success Stories heading (Home)
+        file: sveltekit-project/src/content/sections/stories.json
+        fields:
+          - { name: title, label: Heading, widget: string }
+          - { name: subtitle, label: Intro text, widget: text }
+      - name: faq
+        label: FAQs (Home)
+        file: sveltekit-project/src/content/sections/faq.json
+        fields:
+          - { name: title, label: Heading, widget: string }
+          - { name: subtitle, label: Intro text, widget: text }
+          - name: items
+            label: Questions
+            widget: list
+            summary: '{{fields.question}}'
+            fields:
+              - { name: question, label: Question, widget: string }
+              - { name: answer, label: Answer, widget: text }
+      - name: clients
+        label: Client logos (Home)
+        file: sveltekit-project/src/content/sections/clients.json
+        fields:
+          - { name: title, label: Heading, widget: string }
+          - name: items
+            label: Clients
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: logo, label: Logo, widget: image }
+      - name: timeline
+        label: Our Story timeline (About)
+        file: sveltekit-project/src/content/sections/timeline.json
+        fields:
+          - { name: title, label: Heading, widget: string }
+          - { name: subtitle, label: Intro text, widget: text }
+          - name: items
+            label: Steps
+            widget: list
+            summary: '{{fields.year}}: {{fields.title}}'
+            fields:
+              - { name: year, label: Year, widget: string }
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+      - name: values
+        label: What We Stand For (About)
+        file: sveltekit-project/src/content/sections/values.json
+        fields: *card-section
+      - name: team
+        label: Team (About)
+        file: sveltekit-project/src/content/sections/team.json
+        fields:
+          - { name: title, label: Heading, widget: string }
+          - { name: subtitle, label: Intro text, widget: text }
+          - name: items
+            label: People
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+              - { name: photo, label: Photo, widget: image }
+      - name: join-us
+        label: Join Us (About)
+        file: sveltekit-project/src/content/sections/join-us.json
+        fields: *card-section
+      - name: quote
+        label: Founder quote (About)
+        file: sveltekit-project/src/content/sections/quote.json
+        fields:
+          - { name: text, label: Quote, widget: text }
+          - { name: name, label: Name, widget: string }
+          - { name: role, label: Role, widget: string }
+      - name: case-studies
+        label: Case Studies heading
+        file: sveltekit-project/src/content/sections/case-studies.json
+        fields:
+          - { name: title, label: Heading, widget: string }
+          - { name: subtitle, label: Intro text, widget: text }
+      - name: get-in-touch
+        label: Get in Touch cards (every page)
+        file: sveltekit-project/src/content/sections/get-in-touch.json
+        fields: *card-section
+      - name: footer
+        label: Footer (every page)
+        file: sveltekit-project/src/content/sections/footer.json
+        fields:
+          - { name: companyName, label: Company name, widget: string }
+          - { name: about, label: About text, widget: text }
