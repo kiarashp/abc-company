@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reveal } from '#lib/actions/reveal.ts';
 	import { section } from '#lib/content/index.ts';
 	const timeline = section('timeline');
 </script>
@@ -13,6 +14,7 @@
 		<div class="bg-secondary absolute left-[50%] h-full w-[5px] -translate-x-[50%]"></div>
 		{#each timeline.items as item, index (item.title)}
 			<div
+				use:reveal
 				class="flex flex-col xl:flex-row
 			{index !== 0 ? 'mt-[48px]' : ''}
 			{index % 2 === 0 ? 'pl-[50%]' : ' pr-[50%] xl:flex-row-reverse'}

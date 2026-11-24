@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reveal } from '#lib/actions/reveal.ts';
 	import { section } from '#lib/content/index.ts';
 	const team = section('team');
 </script>
@@ -9,8 +10,8 @@
 		{team.subtitle}
 	</p>
 	<div class="mt-[45px] grid w-full grid-cols-12 gap-x-[10px] gap-y-5 xl:gap-x-[30px]">
-		{#each team.items as person (person.name)}
-			<div class="col-span-6 flex flex-col md:col-span-4">
+		{#each team.items as person, i (person.name)}
+			<div use:reveal={(i % 3) * 110} class="col-span-6 flex flex-col md:col-span-4">
 				<div class="flex w-full items-center justify-center">
 					<img
 						class=" h-full w-auto rounded-lg object-contain"

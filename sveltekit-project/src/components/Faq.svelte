@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reveal } from '#lib/actions/reveal.ts';
 	import { section } from '#lib/content/index.ts';
 	const faq = section('faq');
 	let openedFaq = $state<number | null>(null);
@@ -21,7 +22,7 @@
 
 	{#each faq.items as item, id (item.question)}
 		<!-- each faq -->
-		<div class="flex w-full flex-col bg-white">
+		<div use:reveal class="flex w-full flex-col bg-white">
 			<button
 				class="mt-[26px] flex cursor-pointer items-center justify-between gap-3 px-[24px]"
 				onclick={() => accordionClicked(id)}

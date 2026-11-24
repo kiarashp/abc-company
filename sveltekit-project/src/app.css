@@ -65,3 +65,14 @@
 		@apply px-[2rem] md:px-[3rem] xl:px-[7rem];
 	}
 }
+
+/* Reveal on scroll (see src/lib/actions/reveal.ts). */
+.reveal {
+	transition:
+		opacity 0.7s ease-out,
+		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-hidden {
+	opacity: 0;
+	transform: translateY(28px);
+}
