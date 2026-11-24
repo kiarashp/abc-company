@@ -7,8 +7,8 @@ Per-app notes. Whole-server facts (Caddy, auto-pull, Brevo, traps) are in the se
 
 A demo website for a made-up consulting firm ("ABC Company"), built with SvelteKit 3
 (a tool for making websites). The site's code is in `sveltekit-project/`.
-Address: https://abc.kiapmd.dev. Until Nov 2026 it was on Vercel at svelte-abc.kiapmd.dev (that old address
-should forward to the new one; see the server's Caddyfile). Repo: github.com/kiarashp/abc-company (public;
+Address: https://abc.kiapmd.dev. Until Nov 2026 it was on Vercel at svelte-abc.kiapmd.dev (that address and
+the Vercel project were deleted 24 Nov 2026; no forwarding). Repo: github.com/kiarashp/abc-company (public;
 renamed from svelte-company on 24 Nov 2026, GitHub forwards the old name). On Kia's PC:
 `D:\KIARASH\WORK\servers\kia-netherlands-vps\abc-company` (moved from `to-polish\svelte-company`).
 

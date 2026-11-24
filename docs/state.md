@@ -7,8 +7,8 @@ How the site runs and is edited: `docs/server.md`.
 
 A portfolio demo: website for a FICTIONAL consulting firm, "ABC Company". Kia's own work (built 2025).
 Kia (24 Nov 2026): "it will be a portfolio fake website" — rewrite anything that needs it.
-New address: **https://abc.kiapmd.dev** (Kia chose it 24 Nov 2026). Old version still live on Vercel at
-https://svelte-abc.kiapmd.dev. Repo: github.com/kiarashp/abc-company (public; was svelte-company).
+New address: **https://abc.kiapmd.dev** (Kia chose it 24 Nov 2026). Until 24 Nov 2026 it was on Vercel at
+svelte-abc.kiapmd.dev (both deleted). Repo: github.com/kiarashp/abc-company (public; was svelte-company).
 Folder on Kia's PC: `D:\KIARASH\WORK\servers\kia-netherlands-vps\abc-company` (was `to-polish\svelte-company`).
 
 ## State (24 Nov 2026)
