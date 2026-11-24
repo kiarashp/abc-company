@@ -9,8 +9,15 @@
 			Sveltia CMS: a free content editor that saves changes as files in the GitHub repo.
 			Its settings (what can be edited, and where it is saved) are in config.yml next to this file.
 			The version is pinned (fixed) so an update can't change the editor without us knowing.
+			"integrity" is the file's fingerprint: if unpkg.com ever served a changed file (say, after a break-in),
+			the browser refuses to run it, so it can't steal the editor's GitHub login.
+			NEW VERSION = NEW FINGERPRINT: openssl dgst -sha384 -binary sveltia-cms.js | openssl base64 -A
 		-->
-		<script src="https://unpkg.com/@sveltia/cms@0.261.0/dist/sveltia-cms.js"></script>
+		<script
+			src="https://unpkg.com/@sveltia/cms@0.261.0/dist/sveltia-cms.js"
+			integrity="sha384-sty7BGmg7YGd6Wi3G73SvUYWcNE6vztGSEklT7ZI8T/3JSshWKHKH7HuUk99s/HJ"
+			crossorigin="anonymous"
+		></script>
 	</head>
 	<body></body>
 </html>
