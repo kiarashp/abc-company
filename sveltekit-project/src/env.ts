@@ -26,8 +26,8 @@ export const variables = defineEnvVars({
 		schema: optional
 	},
 
-	// "Log in with GitHub" for the content editor at /admin. Both come from a GitHub OAuth App
-	// (GitHub > Settings > Developer settings > OAuth Apps).
-	GITHUB_CLIENT_ID: { description: 'GitHub OAuth App client ID.', schema: optional },
-	GITHUB_CLIENT_SECRET: { description: 'GitHub OAuth App client secret.', schema: optional }
+	// "Log in with GitHub" for the content editor at /admin. Both come from a GitHub App installed only
+	// on this repo (GitHub > Settings > Developer settings > GitHub Apps), so a login can't reach other repos.
+	GITHUB_CLIENT_ID: { description: 'GitHub App client ID (starts with Iv).', schema: optional },
+	GITHUB_CLIENT_SECRET: { description: 'GitHub App client secret.', schema: optional }
 });

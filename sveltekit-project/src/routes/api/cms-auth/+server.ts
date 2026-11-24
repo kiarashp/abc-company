@@ -28,8 +28,8 @@ export const GET: RequestHandler = ({ url, cookies }) => {
 	const github = new URL('https://github.com/login/oauth/authorize');
 	github.searchParams.set('client_id', GITHUB_CLIENT_ID);
 	github.searchParams.set('redirect_uri', `${url.origin}/api/cms-auth/callback`);
-	// public_repo = may change public repos only (this repo is public). read:user = may see the user's name.
-	github.searchParams.set('scope', 'public_repo,read:user');
+	// No "scope": this is a GitHub App, so the login can only reach the repos the app is installed on
+	// (only abc-company), with only the rights the app has (Contents: read and write).
 	github.searchParams.set('state', state);
 	// A plain redirect response: SvelteKit's redirect() helper refuses outside sites on purpose,
 	// and this one hop to github.com is intended.

@@ -28,12 +28,18 @@ renamed from svelte-company on 24 Nov 2026, GitHub forwards the old name). On Ki
   Uploaded pictures are turned into WebP (a small picture format), max 1600 px, and saved in `static/uploads/`.
 - Saving in the editor makes a commit (a saved snapshot) on `master` on GitHub, which starts the normal
   build-and-deploy (below), so the change is live in about 5 minutes.
-- "Log in with GitHub" is handled by this site itself (`src/routes/api/cms-auth/`). It needs a GitHub
-  OAuth App (GitHub > Settings > Developer settings > OAuth Apps):
-  - Homepage URL: `https://abc.kiapmd.dev`
-  - Authorization callback URL: `https://abc.kiapmd.dev/api/cms-auth/callback`
-  - Its client ID and secret go in the server's `.env` (GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET).
+- "Log in with GitHub" is handled by this site itself (`src/routes/api/cms-auth/`). It uses a **GitHub App**
+  named "ABC Company editor" (GitHub > Settings > Developer settings > GitHub Apps), made 24 Nov 2026:
+  - Homepage `https://abc.kiapmd.dev`, redirect URI `https://abc.kiapmd.dev/api/cms-auth/callback`.
+  - Only permission: Repository > Contents: Read and write. No webhook, user tokens do not expire,
+    installable only on Kia's account, **installed only on abc-company**.
+  - Its Client ID (starts with "Iv") and a client secret are in the server's `.env` (GITHUB_CLIENT_ID,
+    GITHUB_CLIENT_SECRET). No private key is needed.
+- Why a GitHub App and NOT an OAuth App (Kia, 24 Nov 2026): an OAuth App's login key can change ALL the
+  user's public repos (and with a private repo, ALL repos). A GitHub App's key reaches only the repos it is
+  installed on. Use a GitHub App for every Git-based CMS login, also for clients.
 - Only GitHub users who can push to `kiarashp/abc-company` can save. GitHub checks that.
+- To cut off all editor access at once: uninstall the app, or make a new client secret.
 
 ## If it breaks, only it goes down
 

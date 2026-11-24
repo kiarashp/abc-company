@@ -31,20 +31,19 @@ Done and tested locally on the branch:
 
 ## Next (in order)
 
-1. **Kia:** DNS at Porkbun: A record `abc` → 85.31.148.209. Brevo: new SMTP key "abc" (value goes into
-   `/srv/abc/.env` through a file, never the chat). GitHub OAuth App: homepage `https://abc.kiapmd.dev`,
-   callback `https://abc.kiapmd.dev/api/cms-auth/callback`.
-2. Server (follow the server's docs/server.md "Adding a non-WordPress app"; explain each step to Kia first):
-   clone to `/srv/abc` (public repo, https, branch master), `.env`, line in `repos.conf`, Caddy block +
-   7-day picture cache; deploy key pair (private = repo secret `DEPLOY_SSH_KEY`, public = forced-command line
-   in `~claude/.ssh/authorized_keys`: auto mode blocks it, Kia runs a script), `DEPLOY_KNOWN_HOSTS`.
-3. Merge `cms-and-vps` into `master` when the server is ready (push to master = build and deploy).
-4. Old address: Kia points `svelte-abc` at the server too, Caddy forwards it to abc.kiapmd.dev; then turn
-   the Vercel project off.
-5. After going live: test real email + GitHub login in `/admin`; re-run Lighthouse live; update the
-   server's docs/server.md table (row already added, "being set up").
-   Also the portfolio card in kiapmd-dev (`src/content/projects/abc.md`: github + demo links still old).
+Done 24 Nov 2026: DNS A record `abc` (Porkbun); Brevo key "abc" + GitHub App "ABC Company editor" (only on
+abc-company; replaced an OAuth App, see docs/server.md) in `/srv/abc/.env`; `/srv/abc` cloned; Caddy block
+and auto-pull line pushed in the server repo; delivery key on the server + repo secrets; `cms-and-vps` merged
+into `master` (= first real deploy).
 
+1. Check the first deploy: GitHub Actions run, `abc-app-1` healthy, pages load on https://abc.kiapmd.dev.
+2. Kia: log in at /admin, save a small change; send a test message with the contact form.
+3. Old address: Kia points Porkbun `svelte-abc` at 85.31.148.209, then add a Caddy block forwarding
+   svelte-abc.kiapmd.dev to abc.kiapmd.dev; then turn the Vercel project off (it fails to build the new code
+   anyway, so the old site stays frozen there until then).
+4. Kia: delete the old OAuth App "ABC Company editor" if not done (GitHub > Developer settings > OAuth Apps).
+5. Re-run Lighthouse on the live address; update the server's docs/server.md row (now "being set up");
+   portfolio card in kiapmd-dev (`src/content/projects/abc.md`: github + demo links still old).
 
 ## Traps learned
 
