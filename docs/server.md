@@ -109,3 +109,10 @@ Tested from the server with harmless fake attacks; all blocked:
 Added then: Caddy headers for abc.kiapmd.dev (no framing by other sites, HSTS), and a fingerprint (SRI) on
 the editor script in `static/admin/index.html`. **Updating Sveltia = update the version AND the fingerprint**
 (command in that file), or /admin stays blank.
+
+Public-repo check (24 Nov 2026): the full history (45 commits, all branches) was searched for the 4 real server
+secrets (none found) and for keys/tokens of any kind (none; the hits were package checksums). Never committed:
+`.env` files, SendGrid or Sanity tokens. Visible on purpose or harmless: info@/abc@kiapmd.dev, the old Sanity
+project id (Kia to delete that unused project), Kia's folder paths in the notes. The server's login + address
+are a GitHub secret (`DEPLOY_TARGET`), not in the build file. Reliability: if a new image is not healthy,
+`deploy/receive-image.sh` puts the previous one back by itself and the GitHub run fails (Kia gets an email).

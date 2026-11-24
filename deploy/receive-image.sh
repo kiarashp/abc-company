@@ -49,10 +49,20 @@ if [ "$loaded" != "abc:$commit" ]; then
   exit 2
 fi
 
+# Remember the version that runs now, so a broken new one can be undone by itself.
+previous=$(docker image inspect -f '{{.Id}}' abc:live 2>/dev/null || true)
+
 if restart "$commit"; then
   log "image ${commit:0:7} live (healthy)"
+elif [ -n "$previous" ]; then
+  # The new version does not answer: put the previous one back, so the site stays up.
+  docker tag "$previous" abc:live
+  docker compose -f compose.server.yml up -d --remove-orphans >&2
+  log "image ${commit:0:7} NOT HEALTHY: WENT BACK to the previous image automatically (docker logs of the bad one are gone; rebuild and check on a laptop)"
+  exit 1
 else
-  log "image ${commit:0:7} started but NOT HEALTHY (docker logs abc-app-1; go back: receive-image.sh back <older commit>)"
+  log "image ${commit:0:7} started but NOT HEALTHY and there is no previous image (docker logs abc-app-1)"
+  exit 1
 fi
 
 # Keep the 3 newest images, delete older ones (shared parts are stored once).

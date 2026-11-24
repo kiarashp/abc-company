@@ -40,7 +40,7 @@ into `master` (= first real deploy).
 2. (Done 24 Nov) /admin login + save works end to end. Contact form tested 24 Nov: sent via Brevo, arrived in
    SPAM at info@kiapmd.dev (new sender abc@kiapmd.dev); Kia marks "Not spam" / adds a filter.
    Kia's test edit "From !! startups" in the home subtitle is live: undo it in /admin.
-3. Old address: Kia points Porkbun `svelte-abc` at 85.31.148.209, then add a Caddy block forwarding
+3. Old address: Kia points Porkbun `svelte-abc` at the server (same address as `abc`), then add a Caddy block forwarding
    svelte-abc.kiapmd.dev to abc.kiapmd.dev; then turn the Vercel project off (it fails to build the new code
    anyway, so the old site stays frozen there until then).
 4. Kia: delete the old OAuth App "ABC Company editor" if not done (GitHub > Developer settings > OAuth Apps).

@@ -76,14 +76,16 @@ jobs:
 
       # Send it to the server. The key in DEPLOY_SSH_KEY can only run deploy/receive-image.sh there.
       # DEPLOY_KNOWN_HOSTS = the server's own ID, so we never send to an impostor.
+      # DEPLOY_TARGET = login name @ server address, kept as a secret so this public repo doesn't show it.
       - name: Copy the image to the server and start it
         env:
           SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          TARGET: ${{ secrets.DEPLOY_TARGET }}
         run: |
-          if [ -z "$SSH_KEY" ]; then echo "No DEPLOY_SSH_KEY secret yet: skipping the deploy."; exit 0; fi
+          if [ -z "$SSH_KEY" ] || [ -z "$TARGET" ]; then echo "No DEPLOY_SSH_KEY / DEPLOY_TARGET secret: deploy skipped."; exit 1; fi
           install -m 700 -d ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
           printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
           docker save "abc:${{ github.sha }}" | gzip \
-            | ssh -i ~/.ssh/deploy -o IdentitiesOnly=yes claude@85.31.148.209 "${{ github.sha }}"
+            | ssh -i ~/.ssh/deploy -o IdentitiesOnly=yes "$TARGET" "${{ github.sha }}"
