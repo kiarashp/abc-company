@@ -11,7 +11,7 @@ Live today (old version) on Vercel: https://svelte-abc.kiapmd.dev. Repo: github.
 
 ## State (24 Nov 2026)
 
-All the new work is on branch **`cms-and-vps`**, 8 commits on top of `master`, **NOT pushed**.
+All the new work is on branch **`cms-and-vps`**, on top of `master`. Pushed to GitHub 24 Nov 2026 (not merged).
 `master` = the old Sanity + Vercel version that is still live. Nothing on the server yet.
 
 Done and tested locally on the branch:
@@ -37,13 +37,11 @@ Checks at the last commit: `pnpm check`, `pnpm lint`, `pnpm build` all pass (in 
 - NOT yet seen by Kia: the site itself in a browser, and the wording of `/about-this-project`
   (it speaks as Kia; Kia should read it and change anything in `/admin`).
 
-## Open question to Kia
-
 "Shall I push the branch to GitHub now?" (asked at the end of the session, not answered: Kia wrapped up).
 
 ## Next (in order)
 
-1. Push `cms-and-vps` (outward-facing: ask first). Vercel may build a preview of it; harmless.
+1. (Done 24 Nov 2026) Pushed `cms-and-vps`.
 2. Server move, following `D:\KIARASH\WORK\servers\kia-netherlands-vps\_server\CLAUDE.md` and its
    docs/server.md "Adding a non-WordPress app". Explain every server step to Kia first. Kia's hands needed:
    - Brevo: SMTP key named "svelte-abc" (into `/srv/svelte-abc/.env`, never chat).
