@@ -3,6 +3,12 @@
 	import CaseStudies from '../../components/CaseStudies.svelte';
 </script>
 
+<svelte:head>
+	<title>Case Studies — ABC Company</title>
+	<meta name="description" content="See how ABC Company has helped businesses worldwide with tailored engineering solutions." />
+</svelte:head>
+
+
 <Hero
 	title="Case Studies"
 	subtitle="Proven Success Across Industries"

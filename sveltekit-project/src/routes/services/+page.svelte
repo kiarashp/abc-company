@@ -1,7 +1,13 @@
 <script lang="ts">
 	import Hero from '../../components/Hero.svelte';
-	import Experties from '$components/Experties.svelte';
+	import Experties from '#components/Experties.svelte';
 </script>
+
+<svelte:head>
+	<title>Services — ABC Company</title>
+	<meta name="description" content="Consulting, legacy migration, ERP, automated teams and cybersecurity services from ABC Company." />
+</svelte:head>
+
 
 <Hero
 	title="Our Services"

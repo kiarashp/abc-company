@@ -1,24 +1,20 @@
 <script lang="ts">
 	import Header from './Header.svelte';
 	import ButtonPrimary from './ButtonPrimary.svelte';
-	import logos from '$lib/db/logos';
+	import logos from '#lib/db/logos.ts';
 	import { goto } from '$app/navigation';
 
-	const {
-		title,
-		subtitle,
-		description,
-		showGrowingClients = false
-	} = $props<{
+	interface Props {
 		title: string;
 		subtitle: string;
 		description: string;
-		showGrowingClients: boolean;
-	}>();
+		showGrowingClients?: boolean;
+	}
+	const { title, subtitle, description, showGrowingClients = false }: Props = $props();
 </script>
 
 <div
-	class="relative flex flex-col justify-start bg-[url('/decorative/shady-circle.png')] bg-contain bg-top bg-no-repeat
+	class="relative flex flex-col justify-start bg-[url('/decorative/shady-circle.webp')] bg-contain bg-top bg-no-repeat
 	  pb-[20px] xl:min-h-screen paddingContainer xl:pb-[30px]"
 >
 	<Header />
@@ -31,7 +27,7 @@
 		{description}
 	</p>
 	<div class="w-12/12 mt-[24px] flex flex-col md:flex-row items-center gap-[24px] self-end xl:w-6/12">
-		<ButtonPrimary btnTxt="Get a consultation" onclick={()=>{goto('/contact-us/#contact-form')}}/>
+		<ButtonPrimary btnTxt="Get a consultation" onclick={()=>{goto('/contact-us#contact-form')}}/>
 		<a
 			class="body-md hover:decoration-secondary hover:text-accent active:text-primary active:decoration-primary font-semibold underline duration-300"
 			href="/case-studies">View Case Studies</a

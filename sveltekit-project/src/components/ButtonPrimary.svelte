@@ -15,7 +15,7 @@
 >
 	<!-- noise overlay -->
 	<div
-		class="pointer-events-none absolute inset-0 z-10 m-[2px] bg-[url('/decorative/noise.png')] opacity-50"
+		class="pointer-events-none absolute inset-0 z-10 m-[2px] bg-[url('/decorative/noise.webp')] opacity-50"
 	></div>
 
 	<div

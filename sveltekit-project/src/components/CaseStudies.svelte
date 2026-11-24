@@ -1,15 +1,10 @@
 <script lang="ts">
 	import ButtonOutline from './ButtonOutline.svelte';
-	import caseStudies from '$lib/db/caseStudies';
+	import caseStudies from '#lib/db/caseStudies.ts';
 
 	import { backInOut } from 'svelte/easing';
 
-	import { fade } from 'svelte/transition';
-	import { slide } from 'svelte/transition';
-	import { flip } from 'svelte/animate';
-	import {fly} from 'svelte/transition';
-
-	let loadedItems = $state(new Set());
+	import { fly } from 'svelte/transition';
 
 	let isMore = $state(true);
 	let primaryStudies = $state(caseStudies.slice(0, 3));
@@ -41,9 +36,11 @@
 				<div class="flex w-full items-center justify-center overflow-hidden">
 					<img
 						class="group-hover/eachPost:scale-130 h-[300px] w-full rounded-lg object-cover transition-transform duration-[2s] ease-in-out md:h-full md:object-contain"
-						src="/case-studies/{caseStudy.imgUrl}.jpg"
+						src="/case-studies/{caseStudy.imgUrl}.webp"
 						alt={caseStudy.title}
-						onload={() => loadedItems.add(caseStudy.imgUrl)}
+						loading="lazy"
+						width="1024"
+						height="1024"
 					/>
 				</div>
 
@@ -53,7 +50,7 @@
 				<p class="text-accent body-lg px-2">Solution</p>
 				<p class="text-accent body-sm px-2">{caseStudy.shortSolution}</p>
 			</a>
-		{:else}{/each}
+		{/each}
 	</div>
 	{#if isMore}
 		<div class="mt-[40px] flex items-center justify-center">

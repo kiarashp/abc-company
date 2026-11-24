@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Faqs from '$lib/db/faq';
+	import Faqs from '#lib/db/faq.ts';
 	let openedFaq = $state<string | null>(null);
 	function accordionClicked(faqId: string) {
 		// is it the same opened one
@@ -19,7 +19,7 @@
 	</p>
 	<div class="bg-accent mt-[45px] h-0.5 w-full"></div>
 
-	{#each Faqs as faq, index (faq.id)}
+	{#each Faqs as faq (faq.id)}
 		<!-- each faq -->
 		<div class="flex w-full flex-col bg-white">
 			<button

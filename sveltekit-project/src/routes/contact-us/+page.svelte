@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Hero from '$components/Hero.svelte';
-	import ButtonPrimary from '$components/ButtonPrimary.svelte';
+	import Hero from '#components/Hero.svelte';
+	import ButtonPrimary from '#components/ButtonPrimary.svelte';
 	import { page } from '$app/state';
 	import { tick } from 'svelte';
 
@@ -27,12 +27,15 @@
 		filedName.touched = true;
 
 		const target = event.target as HTMLInputElement;
-		if (target.value.length > 0) {
-			filedName.isValid = true;
+		const value = target.value.trim();
+		if (target.type === 'email') {
+			filedName.isValid = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(value);
 		} else {
-			filedName.isValid = false;
+			filedName.isValid = value.length > 0;
 		}
 	}
+	// Hidden field that only spam bots fill in (see the send-mail code).
+	let website = $state('');
 	let contactName: theInput = $state({
 		value: '',
 		touched: false,
@@ -78,24 +81,31 @@
 			contactMessage.isValid
 		) {
 			isLoading = true;
-			const response = await fetch('/api/send-mail', {
-				method: 'POST',
-				body: JSON.stringify({
-					contactName: contactName.value,
-					contactEmail: contactEmail.value,
-					contactService: contactService.value,
-					contactBudget: contactBudget.value,
-					contactSubject: contactSubject.value,
-					contactMessage: contactMessage.value
-				}),
-				headers: { 'Ccontent-Type': 'application/json' }
-			});
-			if (response.ok) {
-				doesEmailSent = true;
-			} else {
+			try {
+				const response = await fetch('/api/send-mail', {
+					method: 'POST',
+					body: JSON.stringify({
+						contactName: contactName.value,
+						contactEmail: contactEmail.value,
+						contactService: contactService.value,
+						contactBudget: String(contactBudget.value),
+						contactSubject: contactSubject.value,
+						contactMessage: contactMessage.value,
+						website
+					}),
+					headers: { 'Content-Type': 'application/json' }
+				});
+				if (response.ok) {
+					doesEmailSent = true;
+				} else {
+					showErrorMessage = true;
+				}
+			} catch {
+				// No internet, or the server did not answer.
 				showErrorMessage = true;
+			} finally {
+				isLoading = false;
 			}
-			isLoading = false;
 
 		} else {
 			contactName.touched = true;
@@ -107,6 +117,12 @@
 		}
 	}
 </script>
+
+<svelte:head>
+	<title>Contact Us — ABC Company</title>
+	<meta name="description" content="Get in touch with ABC Company to talk about your project." />
+</svelte:head>
+
 
 <Hero
 	title="Get In Touch"
@@ -124,6 +140,8 @@
 
 	<form
 		bind:this={formEle}
+		onsubmit={handleSubmitForm}
+		novalidate
 		class=" text-primary relative mt-[45px] grid w-full grid-cols-12 gap-3 p-5 md:gap-[30px]"
 	>
 		{#if isLoading}
@@ -142,10 +160,13 @@
 				back to you within 1-2 business days.
 			</div>
 		{:else if showErrorMessage}
-			<p class="text-errorRed body-lg col-span-12 w-full font-bold">
-				Delivery Failed: Unfortunately, your email could not be sent at this time. This might be due
-				to a temporary network issue. Please refresh the page and try sending your message again.
-			</p>
+			<div class="col-span-12 flex w-full flex-col items-start gap-4">
+				<p class="text-errorRed body-lg font-bold">
+					Delivery Failed: Unfortunately, your email could not be sent at this time. This might be
+					due to a temporary network issue. Please try sending your message again.
+				</p>
+				<ButtonPrimary type="button" btnTxt="Try again" onclick={() => (showErrorMessage = false)} />
+			</div>
 		{:else}
 			<!-- first name -->
 			<div class="col-span-12 flex flex-col md:col-span-6">
@@ -176,7 +197,7 @@
 						class="border-accent focus:ring-accent h-full w-full appearance-none border-[2px] focus:ring-2"
 						class:bg-mist={contactEmail.isValid}
 						class:inputError={!contactEmail.isValid && contactEmail.touched}
-						type="text"
+						type="email"
 						id="email-input"
 						name="email"
 						placeholder="e.g. JohnDoe@gmail.com"
@@ -204,6 +225,7 @@
 						checkValidity(e, contactService);
 					}}
 				>
+					<option value="" disabled>Choose a service</option>
 					<option value="product-consulting">Product Consulting</option>
 					<option value="legacy-system-migration">Legacy System Migration</option>
 					<option value="automated-teams">Automated Teams</option>
@@ -244,7 +266,7 @@
 			</div>
 			<!-- Subject -->
 			<div class="col-span-12 flex flex-col">
-				<label class="text-primary" for="last-name-input">Subject</label>
+				<label class="text-primary" for="subject-input">Subject</label>
 				<div class="w-full">
 					<input
 						class="border-accent focus:ring-accent h-full w-full appearance-none border-[2px] focus:ring-2"
@@ -273,6 +295,7 @@
 						class:inputError={!contactMessage.isValid && contactMessage.touched}
 						name="message"
 						id="message-input"
+						maxlength="5000"
 						placeholder="e.g. Your message..."
 						bind:value={contactMessage.value}
 						required
@@ -282,9 +305,14 @@
 					></textarea>
 				</div>
 			</div>
+			<!-- hidden spam trap: people never see this field -->
+			<div class="hidden" aria-hidden="true">
+				<label for="website-input">Website</label>
+				<input id="website-input" name="website" tabindex="-1" autocomplete="off" bind:value={website} />
+			</div>
 			<!-- button -->
 			<div class="col-span-12 w-full">
-				<ButtonPrimary type="submit" btnTxt="Send Message" onclick={handleSubmitForm} />
+				<ButtonPrimary type="submit" btnTxt="Send Message" />
 			</div>
 		{/if}
 	</form>

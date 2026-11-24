@@ -4,10 +4,16 @@
 	import OurImpact from '../components/OurImpact.svelte';
 	import WhyAbc from '../components/WhyAbc.svelte';
 	import Stories from '../components/Stories.svelte';
-	import Faq from '$components/Faq.svelte';
+	import Faq from '#components/Faq.svelte';
 
 	const {data} = $props()
 </script>
+
+<svelte:head>
+	<title>ABC Company — Engineering & Digital Solutions</title>
+	<meta name="description" content="From startups to multinational corporations, ABC Company delivers scalable, reliable and cost-effective engineering services." />
+</svelte:head>
+
 
 <Hero
 	title="Empowering

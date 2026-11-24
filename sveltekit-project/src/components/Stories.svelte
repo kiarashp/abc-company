@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SuccessStory } from '$lib/types/sanity';
+	import type { SuccessStory } from '#lib/content/stories.ts';
 
 	import ButtonOutline from './ButtonOutline.svelte';
 	import { goto } from '$app/navigation';
@@ -10,7 +10,6 @@
 
 	let { stories }: Props = $props();
 
-	// const {stories} = $props<{ stories: SuccessStory[]; }>();
 </script>
 
 <div class="paddingContainer mt-[96px] flex flex-col">

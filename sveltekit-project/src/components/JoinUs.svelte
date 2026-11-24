@@ -1,5 +1,5 @@
 <script lang="ts">
-	import joinUses from '$lib/db/joinUs';
+	import joinUses from '#lib/db/joinUs.ts';
 	import SimpleCards from './SimpleCards.svelte';
 </script>
 

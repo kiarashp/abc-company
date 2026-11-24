@@ -1,5 +1,5 @@
 <script lang="ts">
-	import timeLines from '$lib/db/timeLine';
+	import timeLines from '#lib/db/timeLine.ts';
 </script>
 
 <div class="paddingContainer mt-[96px] flex flex-col">

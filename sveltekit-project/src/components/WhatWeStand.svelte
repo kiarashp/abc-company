@@ -1,5 +1,5 @@
 <script lang="ts">
-	import whatWeStandFors from '$lib/db/whatWeStandFor';
+	import whatWeStandFors from '#lib/db/whatWeStandFor.ts';
 	import SimpleCards from './SimpleCards.svelte';
 </script>
 

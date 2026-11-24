@@ -1,0 +1,40 @@
+# Settings for the content editor (Sveltia CMS) at /admin.
+# Each save becomes a commit (a saved snapshot) in this GitHub repo.
+# The push then rebuilds the site, so the change goes live a few minutes later.
+
+backend:
+  name: github
+  repo: kiarashp/svelte-company
+  branch: master
+  # The small login helper that lets the editor "log in with GitHub".
+  # It runs on the server (see the server notes); without it, only local editing works.
+  base_url: https://cms-auth.kiapmd.dev
+
+# Pictures are not used by the stories yet; this is where they would go.
+media_folder: sveltekit-project/static/uploads
+public_folder: /uploads
+
+collections:
+  - name: stories
+    label: Success Stories
+    label_singular: Success Story
+    description: The short client quotes shown on the home page.
+    # Paths are from the top of the repo, which holds the website in "sveltekit-project".
+    folder: sveltekit-project/src/content/stories
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: '{{slug}}'
+    identifier_field: title
+    sortable_fields: [order, title]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: desc, label: Quote, widget: text }
+      - { name: writer, label: Who said it, widget: string, hint: 'e.g. CTO, Healthcare Enterprise' }
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+        required: false
+        hint: Lower numbers show first on the home page.

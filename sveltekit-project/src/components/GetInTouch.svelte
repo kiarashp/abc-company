@@ -1,5 +1,5 @@
 <script lang="ts">
-	import getInTouches from '$lib/db/getIntouch';
+	import getInTouches from '#lib/db/getIntouch.ts';
 	import SimpleCards from './SimpleCards.svelte';
 </script>
 
@@ -15,7 +15,7 @@
 	<div class="mt-[45px] h-0.5 w-full bg-[rgba(81,113,147,0.5)]"></div>
 
 	<div
-		class="flex w-full flex-col bg-[url('/decorative/footer-circle.png')] bg-contain bg-bottom bg-no-repeat xl:bg-center"
+		class="flex w-full flex-col bg-[url('/decorative/footer-circle.webp')] bg-contain bg-bottom bg-no-repeat xl:bg-center"
 	>
 		<div class="mt-[45px] grid w-full grid-cols-12 gap-x-4 gap-y-2.5 xl:gap-x-[30px]">
 			<div class="col-span-12 flex flex-col xl:col-span-6">
@@ -108,22 +108,22 @@
 			<div class="col-span-6 xl:col-span-3">
 				<p class="heading-md">Services</p>
 				<div class="body-lg text-accent mt-[24px] flex flex-col gap-[12px]">
-					<a class="hover:text-secondary active:text-primary duration-300" href="/"
+					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
 						>Legacy System Migration</a
 					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/"
+					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
 						>ERP Implementation</a
 					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/"
+					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
 						>Engineering Consulting</a
 					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/"
+					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
 						>Product Consulting</a
 					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/"
+					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
 						>Automated Teams</a
 					>
-					<a class="hover:text-secondary active:text-primary duration-300" href="/"
+					<a class="hover:text-secondary active:text-primary duration-300" href="/services"
 						>Cybersecurity Services</a
 					>
 				</div>
@@ -134,7 +134,7 @@
 		<div class="mt-[45px] h-0.5 w-full bg-[rgba(81,113,147,0.5)]"></div>
 
 		<p class="text-accent body-lg mt-[45px] pb-[15px] text-center">
-			© ABC Company 2024 | All Rights Reserved
+			© ABC Company {new Date().getFullYear()} | All Rights Reserved
 		</p>
 	</div>
 </div>

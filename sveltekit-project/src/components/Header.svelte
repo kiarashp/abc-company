@@ -2,43 +2,20 @@
 	import ButtonPrimary from './ButtonPrimary.svelte';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { clickOutside } from '$lib/actions/clickOutside';
+	import { clickOutside } from '#lib/actions/clickOutside.ts';
 
 	import { slide } from 'svelte/transition';
 
 	let menuOpen = $state(false);
 	let isScrolled: boolean = $state(false);
 	let sentinel: HTMLDivElement | undefined = $state();
-	let observer: IntersectionObserver | undefined = $state();
 
 	function toggleMenu() {
 		menuOpen = !menuOpen;
 	}
-	// $effect(() => {
-	// 	// Create intersection observer to watch when user scrolls past top
-	// 	observer = new IntersectionObserver(
-	// 		(entries) => {
-	// 			entries.forEach((entry) => {
-	// 				// When sentinel is not visible, user has scrolled
-	// 				isScrolled = !entry.isIntersecting;
-	// 			});
-	// 		},
-	// 		{ threshold: 0 }
-	// 	);
-
-	// 	if (sentinel) {
-	// 		observer.observe(sentinel);
-	// 	}
-
-	// 	// return () => {
-	// 	// 	if (observer) observer.disconnect();
-	// 	// };
-
-	// });
-
 	onMount(() => {
 		// Create intersection observer to watch when user scrolls past top
-		observer = new IntersectionObserver(
+		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
 					// When sentinel is not visible, user has scrolled
@@ -53,7 +30,7 @@
 		}
 
 		return () => {
-			if (observer) observer.disconnect();
+			observer.disconnect();
 		};
 	});
 </script>
@@ -169,7 +146,7 @@
 		btnTxt="Get a consultation"
 		customClass="xl:flex hidden"
 		onclick={() => {
-			goto('/contact-us/#contact-form');
+			goto('/contact-us#contact-form');
 		}}
 	/>
 </div>

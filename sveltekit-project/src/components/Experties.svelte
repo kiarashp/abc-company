@@ -1,6 +1,5 @@
 <script lang="ts">
-	import ButtonOutline from './ButtonOutline.svelte';
-	import experties from '$lib/db/experties';
+	import experties from '#lib/db/experties.ts';
 	import SimpleCards from './SimpleCards.svelte';
 </script>
 

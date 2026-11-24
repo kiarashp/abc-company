@@ -1,6 +1,5 @@
 <script lang="ts">
-	import ButtonOutline from './ButtonOutline.svelte';
-import whyAbcs from '$lib/db/whyAbc';
+import whyAbcs from '#lib/db/whyAbc.ts';
 import SimpleCards from './SimpleCards.svelte';
 </script>
 

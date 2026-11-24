@@ -1,5 +1,5 @@
 <script lang="ts">
-import ourTeams from "$lib/db/ourTeam";
+import ourTeams from "#lib/db/ourTeam.ts";
 </script>
 
 <div class="mt-[96px] flex flex-col  paddingContainer">
@@ -15,8 +15,11 @@ import ourTeams from "$lib/db/ourTeam";
 				<div class="flex w-full items-center justify-center ">
 					<img
 						class=" h-full w-auto object-contain rounded-lg"
-						src="/our-team/{ourTeam.imgUrl}.jpg"
+						src="/our-team/{ourTeam.imgUrl}.webp"
 						alt={ourTeam.title}
+						loading="lazy"
+						width="1024"
+						height="1024"
 					/>
 				</div>
 				<p class="heading-md text-secondary mt-[24px]">{ourTeam.title}</p>

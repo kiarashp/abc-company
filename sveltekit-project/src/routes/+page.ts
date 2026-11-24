@@ -1,8 +1,6 @@
-import sanityClient from '$lib/utils/sanity';
-import type { SuccessStory } from '$lib/types/sanity';
+import { stories } from '#lib/content/stories.ts';
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = async () => {
-	const stories: SuccessStory[] = await sanityClient.fetch('*[_type == "successStory"]');
+export const load: PageLoad = () => {
 	return { stories };
 };

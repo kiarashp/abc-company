@@ -1,5 +1,5 @@
 <script lang="ts">
-	import impacts from '$lib/db/impacts';
+	import impacts from '#lib/db/impacts.ts';
 </script>
 
 <div class="xl:mt-[96px] mt-[50px] flex flex-col paddingContainer">
